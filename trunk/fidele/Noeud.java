@@ -23,18 +23,19 @@ public class Noeud
 	 */
 	int proprietaire;
 	
-	/*
+	/**
 	 * Nombre de threads necessaires pour capturer le noeud,
 	 * et servant de bonus pour le camp propritaire pour les combat
 	 */
 	int coefficient;
+	
 	/**
 	 * Le fidele sur lequel est instanci ce noeud
 	 */
 	private Fidele fidele;
 	
 	/**
-	 *  Les voisins de ce noeud
+	 *  Les voisins de ce noeud (sous la forme (idNoeud, distance))
 	 */
 	private ArrayList <NoeudVoisin> noeudsVoisins;
 
@@ -43,21 +44,37 @@ public class Noeud
 	 */
 	private Vector<Warrior> vectWarriors;
 	
+	/**
+	 * Les noms et numero du noeud emetteur des threads souhaitant migrer sur ce noeud
+	 */
 	private ArrayList<DemandeurDasile> demandeursDAsile;
 	
+	/**
+	 * Le nombre de threads crée par minute par ce noeud (cf NoeudBase)
+	 */
 	private int frequencePondaison;
 	
 	/**
-	 * Sous-couche rseau
+	 * Sous-couche réseau
 	 */
 	private NoeudReseau noeudReseau;
 	
 	boolean dejacapture;
 	
-	private InfoNoeud infoNoeud;
-	
+	/**
+	 * La représentation d'un noeud voisin
+	 * @author Tony
+	 *
+	 */
 	public class NoeudVoisin {
+		/**
+		 * L'id du noeud voisin
+		 */
 		private int idNoeud;
+		
+		/**
+		 * L'éloignement du voisin
+		 */
 		private int distance;
 		
 		public NoeudVoisin(int idVoisin, int distanceVoisin) {
@@ -78,8 +95,20 @@ public class Noeud
 		}
 	}
 	
+	/**
+	 * La représentation d'un thread souhaitant migrer sur ce noeud
+	 * @author Tony
+	 *
+	 */
 	public class DemandeurDasile {
+		/**
+		 * Le nom du thread (identifiant unique)
+		 */
 		private String nomDemandeur;
+		
+		/**
+		 * L'indice du noeud duquel proviendra le thread
+		 */
 		private int numeroNoeudProvenance;
 		
 		public DemandeurDasile(String nomDemandeur, int numeroNoeudProvenance) {
@@ -96,10 +125,13 @@ public class Noeud
 		}
 	}
 	
-	public Noeud (InfoNoeud info, Fidele f)
-	{
+	/**
+	 * Constructeur
+	 * @param info l'info servant à construire le noeud
+	 * @param f le fidele possédant ce noeud
+	 */
+	public Noeud (InfoNoeud info, Fidele f) {
 		fidele = f;
-		infoNoeud=info;
 		dejacapture = false;
 		idNoeud = info.getIdentifiantNoeud();
 		proprietaire = info.getProprietaire();
@@ -143,43 +175,72 @@ public class Noeud
 		}.start();
 	}
 	
-	public void setCoefficient(int coeff)
-	{
-		coefficient = coeff;
-	}
-	
-	public boolean isbase(){
-		return false;
-	}
+	/**
+	 * Demande à la couche réseau d'initier une connexion en tant que client vers le noeud voisin
+	 * @param infoVoisin les infos du futur voisin qui attent en tant que serveur
+	 * @param distance le noeud voisin doit la connaître également
+	 */
 	public void connecterAUnNoeud(InfoNoeud infoVoisin, int distance) {
 		noeudReseau.rejoindreNoeudReseau(infoVoisin.getIp(), infoVoisin.getPort());
 		this.ajouterVoisin(infoVoisin.getIdentifiantNoeud(), distance);
 	}
 	
+	/**
+	 * Transmet l'info de ce noeud au fidèle
+	 */
 	public void envoyerInfoNoeudAuFidele() {
 		fidele.envoyerInfoNoeudADieu(new InfoNoeud(this));
 	}
 	
+	/**
+	 * Transmet l'info du thread au fidèle
+	 * @param w
+	 */
 	public void envoyerInfoThreadAuFidele(Warrior w) {
 		fidele.envoyerInfoThreadADieu(new InfoThread(w));
 	}
 	
+	/**
+	 * Effectue une demande de migration de la part d'un thread au noeud sur lequel il souhaite se déplacer
+	 * @param numeroVoisin l'indice du noeud sur lequel souhaite migrer le thread
+	 * @param nomDemandeur le nom du thread souhaitant migrer
+	 */
 	public void demanderAutorisationMigration(int numeroVoisin, String nomDemandeur) {
 		noeudReseau.envoyerDemandeMigration(numeroVoisin, nomDemandeur);
 	}
 	
+	/**
+	 * Envoie à un noeud une autorisation de migration pour un thread
+	 * @param nomThreadAutorise le nom du thread qui attend de migrer (ce thread est sur le noeud distant)
+	 * @param numeroNoeudProvenance l'indice du noeud sur lequel se trouve le thread en attente
+	 */
 	public void envoyerAutorisationMigration(String nomThreadAutorise, int numeroNoeudProvenance) {
 		noeudReseau.envoyerAutorisationMigration(numeroNoeudProvenance, nomThreadAutorise);
 	}
 	
+	/**
+	 * Indique à un thread qu'il a le droit d'effectuer sa migration
+	 * @param nomMigreur le nom du thread autorisé à migrer
+	 */
 	public void autoriserThreadAMigrer(String nomMigreur) {
 		this.getWarriorParNom(nomMigreur).deBloquer();
 	}
 	
+	/**
+	 * Ajout d'un thread dans la liste.
+	 * Utilisée uniquement par NoeudBase !!
+	 * @param w
+	 */
 	public void ajouterThread(Warrior w) {
 		vectWarriors.add(w);
 	}
 	
+	/**
+	 * Effectue la migration d'un thread après que celui-ci ait recu l'autorisation.
+	 * Note : le thread dispose déjà des informations necessaires à sa migration,
+	 * qui ont été déterminée dans la fonction "demanderAutorisationMigration" de la classe Warrior
+	 * @param thread
+	 */
 	public synchronized void migrerThread(Warrior thread) {
 		thread.getCarte().collecterInfos(this);
 		noeudReseau.envoyerThread(thread, thread.getNumeroNoeudDestination());
@@ -190,13 +251,19 @@ public class Noeud
 			if(vectWarriors.get(i).getName()==thread.getNom())
 				temp=i;	
 		}
+		// retire de la liste
 		vectWarriors.remove(temp);
 		envoyerInfoNoeudAuFidele();
+		// terminaison du run()
 		thread.tuer();
 	
 		
 	}
 	
+	/**
+	 * Reception d'un thread de la part d'un noeud voisin
+	 * @param w
+	 */
 	public void recevoirThread(Warrior w) {
 		vectWarriors.add(w);
 		w.getCarte().ajouterLien(w.getIdNoeudCourant(),
@@ -214,18 +281,29 @@ public class Noeud
 		envoyerInfoNoeudAuFidele();
 	}
 	
+	/**
+	 * Demande à chaque voisin les informations le concernant
+	 * @param nomDemandeur le nom du thread souhaitant récupérer les infos
+	 */
 	public void interrogerVoisins(String nomDemandeur) {
 		noeudReseau.envoyerDemandesInfos(nomDemandeur);
 	}
 	
+	/**
+	 * Recherche le thread ayant demandé les infos, et les lui donne.
+	 * Cette fonction est appelée autant de fois qu'il y'a de noeuds voisins
+	 * @param nomDemandeur le thread ayant demandé les infos des voisins
+	 * @param reponse l'information d'un noeud voisin
+	 */
 	public void donnerReponseInfo(String nomDemandeur, InfoNoeud reponse) {
-		
-		int temp =0;
-		for(int i=0;i<vectWarriors.size();i++)
-		{
-			if(vectWarriors.get(i).getName().equals(nomDemandeur)) temp=i;	
+		for(int i=0; i<vectWarriors.size(); i++) {
+			if(vectWarriors.get(i).getName().equals(nomDemandeur)) {
+				vectWarriors.get(i).ajouterInfoNoeudVoisin(reponse);
+				break;
+			}
 		}
-		vectWarriors.get(temp).ajouterInfoNoeudVoisin(reponse);
+		assert(false);
+		
 	}
 	
 	/**
@@ -236,32 +314,35 @@ public class Noeud
 		
 	}
 	
-	public int getId ()
-	{
-		return idNoeud;
-	}
-	
-	public int getNombreVoisins ()
-	{
-		return noeudsVoisins.size();
-	}
-	
-	
+	/**
+	 * Ajoute un noeud voisin (pas un Noeud à proprement parler, seulement sa représentation :p)
+	 * @param idVoisin l'id de ce nouveau voisin
+	 * @param distanceVoisin la distance à ce voisin
+	 */
 	public void ajouterVoisin(int idVoisin, int distanceVoisin) {
 		noeudsVoisins.add(new NoeudVoisin(idVoisin, distanceVoisin));
 	}
 	
+	/**
+	 * Idem, mais ajoute le voisin à un endroit particulier dans le tableau des voisins.
+	 * Cela pour faire la correspondance entre les interfaces réseaux et les noeudsVoisins.
+	 * @param idVoisin
+	 * @param distanceVoisin
+	 * @param emplacement l'indice dans le tableau
+	 */
     public void ajouterVoisin(int idVoisin, int distanceVoisin, int emplacement) {
         noeudsVoisins.add(emplacement, new NoeudVoisin(idVoisin, distanceVoisin));
     }
     
+    /**
+     * Ajoute un nouveau demandeur d'asile dans la liste
+     * (Un demandeur d'asile est un thread souhaitant migrer sur le noeud)
+     * @param demandeur le nom du demandeur
+     * @param numeroNoeudProvenance l'indice du noeud d'ou proviendra le thread
+     */
     public void ajouterUnDemandeurDAsile(String demandeur, int numeroNoeudProvenance) {
     	demandeursDAsile.add(new DemandeurDasile(demandeur, numeroNoeudProvenance));
     }
-	
-	public int getNumeroVoisinAleatoire() {
-		return (int)(Math.random() * getNombreVoisins());
-	}
 	
 	/**
 	 *  Cree un thread surveillant  intervalle rgulier les occupants du noeud
@@ -470,7 +551,6 @@ public class Noeud
 		
 		//Le noeud prend la couleur du gagnant
 		
-		infoNoeud.setProprietaire(idGagnant);
 		proprietaire = idGagnant;
 		
 		//Si il y'a toujours plus d'un camp prsents sur le noeud,
@@ -478,6 +558,30 @@ public class Noeud
 		//surveillant donc pas d'inquitude.
 	}
 	
+	public int getId () {
+		return idNoeud;
+	}
+	
+	public int getNombreVoisins () {
+		return noeudsVoisins.size();
+	}
+	
+	public void setCoefficient(int coeff) {
+		coefficient = coeff;
+	}
+	
+	public boolean isbase(){
+		return false;
+	}
+	
+	public int getNumeroVoisinAleatoire() {
+		return (int)(Math.random() * getNombreVoisins());
+	}
+	
+	/**
+	 * Retourne la liste des propriétaires de chaque thread présents sur le noeud
+	 * @return
+	 */
 	public int[] getProprietairesThreads() {
 		int[] etats = new int[vectWarriors.size()];
 		//ArrayList<Warrior> listeWarriors= new ArrayList<Warrior> (vectWarriors.values());
@@ -486,6 +590,9 @@ public class Noeud
 		return etats;
 	}
 	
+	/**
+	 * @return la couche réseau
+	 */
 	public NoeudReseau getNoeudReseau() {
 		return noeudReseau;
 	}
@@ -502,18 +609,38 @@ public class Noeud
 		return vectWarriors.size();
 	}
 	
-	public int getDistanceVoisin(int i) {
+	/**
+	 * Retourne la distance du voisin situé à l'indice i
+	 * @param i
+	 * @return
+	 */
+	public int getDistanceVoisinParIndice(int i) {
 		return noeudsVoisins.get(i).getDistance();
 	}
 	
+	/**
+	 * Retourne la distance du voisin ayant l'id idVoisin
+	 * @param idVoisin
+	 * @return
+	 */
 	public int getDistanceVoisinParId(int idVoisin) {
 		return getNoeudVoisinParId(idVoisin).getDistance();
 	}
 	
-	public NoeudVoisin getNoeudVoisin(int i) {
+	/**
+	 * Retourne le noeud voisin situé à l'indice i
+	 * @param i
+	 * @return
+	 */
+	public NoeudVoisin getNoeudVoisinParIndice(int i) {
 		return noeudsVoisins.get(i);
 	}
 	
+	/**
+	 * Retourne le thread ayant le nom sonNom
+	 * @param sonNom
+	 * @return
+	 */
 	public Warrior getWarriorParNom(String sonNom) {
 		for (int i=0; i<vectWarriors.size(); i++)
 			if (vectWarriors.get(i).getNom().equals(sonNom))
@@ -522,6 +649,11 @@ public class Noeud
 		return null;
 	}
 	
+	/**
+	 * Retourne le voisin ayant l'id idVoisin
+	 * @param idVoisin
+	 * @return
+	 */
 	public NoeudVoisin getNoeudVoisinParId(int idVoisin) {
 		for (int i=0; i<noeudsVoisins.size(); i++)
 			if (noeudsVoisins.get(i).getIdentifiantNoeud() == idVoisin)
@@ -530,17 +662,14 @@ public class Noeud
 		return null;
 	}
 	
+	/**
+	 * @return la list des threads présents sur le noeud
+	 */
 	public Vector<Warrior> getListeWarrior() {
 		   return vectWarriors;
 		}
 	
-	public int getCoefficient ()
-	{
+	public int getCoefficient () {
 		return coefficient;
-	}
-	
-	public InfoNoeud getInfoNoeud ()
-	{
-		return infoNoeud ;
 	}
 }
