@@ -9,15 +9,15 @@ public class DTPanneNoeud extends DonneeTrame{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private NoeudReseau emetteur;
+	private int emetteur;
 	private int enPanne;
 	
-	public DTPanneNoeud(NoeudReseau emet, int dest) {
+	public DTPanneNoeud(int emet, int dest) {
 		emetteur = emet;
 		enPanne = dest;
 	}
 	
-	public NoeudReseau getNoeudEmetteur() {
+	public int getNoeudEmetteur() {
 		return emetteur;
 	}
 	
