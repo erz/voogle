@@ -20,11 +20,20 @@ import libWarThreads.Trame;
 
 public class FideleReseau {
 	
-	private final int portDistant = 4000;
+	/**
+	 * Le port sur lequel on écoute les voisins qui souhaitent se connecter
+	 */
 	private final int portLocal = 4001;
 	private ServerSocket serveur;
+	
+	/**
+	 * L'interface de communication avec Dieu
+	 */
 	private static InterfaceReseau interfaceDieu;
 	
+	/**
+	 * La couche supérieure
+	 */
 	private Fidele fidele;
 	
 	public FideleReseau(Fidele fidele) {
@@ -46,6 +55,9 @@ public class FideleReseau {
 		}).start();
 	}
 	
+	/**
+	 * Attente que Dieu initie une connection vers ce noeud
+	 */
 	public void attendreDieu() {
 		try {
 			serveur = new ServerSocket(portLocal);
@@ -61,23 +73,44 @@ public class FideleReseau {
 		}.start();
 	}
 	
+	/**
+	 * Initie une connexion en mode client vers Dieu
+	 * @param ip l'ip de la machine de Dieu
+	 * @param port le port d'écoute de Dieu
+	 */
 	public void rejoindreDieu(String ip, int port) {
 		interfaceDieu.rejoindreServeur(ip, port);
 		decoderTrames();
 	}
 	
+	/**
+	 * Envoie une trame d'acquittement
+	 * @param n
+	 */
 	public void envoyerControl(int n){
 		interfaceDieu.envoyer(new Trame(Trame.ACK, new DTPanneFidele(n)));
 	}
 	
+	/**
+	 * Envoie l'information du noeud à Dieu (et non le noeud lui meme !)
+	 * @param info
+	 */
 	public void envoyerInfoNoeud(InfoNoeud info) {
 		interfaceDieu.envoyer(new Trame(Trame.INFO_NOEUD, new DTInfosNoeud(info)));
 	}
 	
+	/**
+	 * Envoyer l'information du Thread à Dieu (et non le thread lui meme !)
+	 * @param info
+	 */
 	public void envoyerInfoThread(InfoThread info) {
 		interfaceDieu.envoyer(new Trame(Trame.INFO_THREAD, new DTInfosThread(info)));
 	}
 	
+	/**
+	 * Décodage des trames recues
+	 * Effectue les actions necessaires en fonction du type de trame
+	 */
 	public void decoderTrames() {
 		new Thread() {
 			@Override
@@ -119,6 +152,10 @@ public class FideleReseau {
 		return interfaceDieu;
 	}
 	
+	/**
+	 * 
+	 * @return la couche supérieure
+	 */
 	public Fidele getFidele() {
 		return fidele;
 	}
