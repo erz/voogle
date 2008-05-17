@@ -33,7 +33,7 @@ public class NoeudBase extends Noeud {
 	
 	@Override
 	public void mettreEnAction() {
-		pondreUnThread();
+		pondreEnContinu();
 	}
 	@Override
 	public boolean isbase(){
