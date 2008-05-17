@@ -570,7 +570,7 @@ public class Noeud
 		coefficient = coeff;
 	}
 	
-	public boolean isbase(){
+	public boolean isBase(){
 		return false;
 	}
 	
