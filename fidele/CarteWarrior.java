@@ -27,8 +27,8 @@ public class CarteWarrior implements Serializable
 		
 		public InfosCollectees (Noeud noeud)
 		{
-			this.proprietaire = noeud.getInfoNoeud().getProprietaire();
-			this.base = noeud.getInfoNoeud().isBase() ;
+			this.proprietaire = noeud.getProprietaire();
+			this.base = noeud.isBase() ;
 			nombreThreadsJ1=0;
 			nombreThreadsJ2=0;
 			
