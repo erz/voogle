@@ -216,8 +216,8 @@ public class NoeudReseau
 							case Trame.PANNE_NOEUD :
 								//le noeud est en panne, election du fidele qui l'hebergera 
 								int idPanne = ((DTPanneNoeud)trameRecue.getDonnee()).getIdNoeudPanne();
-								NoeudReseau nr = ((DTPanneNoeud)trameRecue.getDonnee()).getNoeudEmetteur();
-								int idReponse = nr.noeud.getId();
+								int nr = ((DTPanneNoeud)trameRecue.getDonnee()).getNoeudEmetteur();
+								int idReponse = nr;
 								interfacesNoeudsReseau.get(idReponse).envoyer(new Trame(Trame.ACK,null));
 								break;
 								
