@@ -145,8 +145,8 @@ public class Warrior extends Thread implements Serializable
 	public void demanderAutorisationMigration(int numeroVoisin) {
 		etat = Warrior.ATTENTE_MIGRATION;
 		numeroNoeudDestination = numeroVoisin;
-		idNoeudDestination = noeud.getNoeudVoisin(numeroVoisin).getIdentifiantNoeud();
-		distanceAParcourir = noeud.getNoeudVoisin(numeroVoisin).getDistance();
+		idNoeudDestination = noeud.getNoeudVoisinParIndice(numeroVoisin).getIdentifiantNoeud();
+		distanceAParcourir = noeud.getNoeudVoisinParIndice(numeroVoisin).getDistance();
 		noeud.demanderAutorisationMigration(numeroVoisin, nom);
 		// attente autorisation
 		bloquer();
