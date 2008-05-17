@@ -334,7 +334,7 @@ public class NoeudReseau
 		/////////////////
 		
 		
-		FideleReseau.getInterfaceDieu().envoyer(new Trame(Trame.PANNE_NOEUD,new DTPanneNoeud(this,1)));
+		FideleReseau.getInterfaceDieu().envoyer(new Trame(Trame.PANNE_NOEUD,new DTPanneNoeud(noeud.getId(),destinataire)));
 		//Dieu prévient tous les noeuds voisins du noeud en panne
 		//Dieu leur dit qui va recréer
 		//Dieu envoie au noeud voisin ayant le plus grand id une trame avec toutes les infos
