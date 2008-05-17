@@ -36,7 +36,7 @@ public class NoeudBase extends Noeud {
 		pondreEnContinu();
 	}
 	@Override
-	public boolean isbase(){
+	public boolean isBase(){
 		return true;
 	}
 
