@@ -55,8 +55,8 @@ public class TactiqueWarrior implements Serializable
 		//On cherche les noeuds pas encore parcouru parmi les voisins
 		for(int k=0; k<guerrier.getNoeud().getNombreVoisins();k++)
 		{
-			if(matrice[guerrier.getNoeud().getNoeudVoisin(k).getIdentifiantNoeud()][idNoeudCourant] == 214748364){
-				listeidcible.add(guerrier.getNoeud().getNoeudVoisin(k).getIdentifiantNoeud());
+			if(matrice[guerrier.getNoeud().getNoeudVoisinParIndice(k).getIdentifiantNoeud()][idNoeudCourant] == 214748364){
+				listeidcible.add(guerrier.getNoeud().getNoeudVoisinParIndice(k).getIdentifiantNoeud());
 			}
 		}
 		System.out.println(listeidcible);
@@ -68,7 +68,7 @@ public class TactiqueWarrior implements Serializable
 			
 			for(int i=0;i<guerrier.getNoeud().getNombreVoisins();i++)
 			{
-				if(temp == guerrier.getNoeud().getNoeudVoisin(i).getIdentifiantNoeud())
+				if(temp == guerrier.getNoeud().getNoeudVoisinParIndice(i).getIdentifiantNoeud())
 					idCible = i; 
 			
 			}
@@ -112,7 +112,7 @@ public class TactiqueWarrior implements Serializable
 				//On recupere le premier id du noeud du chemin
 				for(int i=0;i<guerrier.getNoeud().getNombreVoisins();i++)
 				{
-					if(cheminAParcourir.get(0) == guerrier.getNoeud().getNoeudVoisin(i).getIdentifiantNoeud())
+					if(cheminAParcourir.get(0) == guerrier.getNoeud().getNoeudVoisinParIndice(i).getIdentifiantNoeud())
 						idCible = i; 
 				
 				}
@@ -126,7 +126,7 @@ public class TactiqueWarrior implements Serializable
 				//On recupere le premier id du noeud du chemin
 				for(int i=0;i<guerrier.getNoeud().getNombreVoisins();i++)
 				{
-					if(cheminAParcourir.get(0) == guerrier.getNoeud().getNoeudVoisin(i).getIdentifiantNoeud())
+					if(cheminAParcourir.get(0) == guerrier.getNoeud().getNoeudVoisinParIndice(i).getIdentifiantNoeud())
 						idCible = i; 
 				
 				}
