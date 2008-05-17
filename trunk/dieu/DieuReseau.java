@@ -5,6 +5,8 @@ import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Vector;
 
 import libWarThreads.Console;
 import libWarThreads.DTDebut;
@@ -13,6 +15,7 @@ import libWarThreads.DTInfosThread;
 import libWarThreads.DTNouveauLien;
 import libWarThreads.DTNouveauNoeud;
 import libWarThreads.DTPanneFidele;
+import libWarThreads.DTPanneNoeud;
 import libWarThreads.InfoNoeud;
 import libWarThreads.InterfaceReseau;
 import libWarThreads.Trame;
@@ -130,6 +133,10 @@ public class DieuReseau {
 								dieu.ajouterInfoModification(((DTInfosThread)trameRecue.getDonnee()).getInfoThread());
 								//System.out.println("Fin nouvelle modif");
 								break;
+							case Trame.PANNE_NOEUD :
+								//gerer une requete de panne
+								gestionPanne(((DTPanneNoeud)trameRecue.getDonnee()).getIdNoeudPanne());
+								break;	
 							}
 						}
 					}
@@ -151,5 +158,16 @@ public class DieuReseau {
 	public int getNombreInterfacesMachines() {
 		return interfacesMachines.size();
 	}
-
+	private void gestionPanne(int idPanne){
+		Vector<Integer> voisins = dieu.getGraphe().getNoeud(idPanne).getVectVoisin();
+		Iterator<Integer> i = voisins.iterator();
+		int max=0;
+		while(i.hasNext()){
+			//On insere le code ici pour chaque voisin
+			int k = i.next().intValue(); //On met dans k la valeur en cours
+			if(max < k) 
+				 max = k;
+		}
+		System.out.println("Noeud "+idPanne+" en panne");
+	}
 }
