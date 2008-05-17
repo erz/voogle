@@ -37,7 +37,12 @@ public class Noeud
 	/**
 	 *  Les voisins de ce noeud (sous la forme (idNoeud, distance))
 	 */
-	private ArrayList <NoeudVoisin> noeudsVoisins;
+	private NoeudVoisin[] noeudsVoisins;
+	
+	/**
+	 * Le nombre de voisins (le nombre de cellules non null de noeudsVoisins)
+	 */
+	private int nombreVoisins;
 
 	/**
 	 *  Les threads presents sur ce noeud
@@ -137,7 +142,7 @@ public class Noeud
 		proprietaire = info.getProprietaire();
 		coefficient = (int)(5*(Math.random())+1);
 		frequencePondaison = info.getFrequencePondaison();
-		noeudsVoisins = new ArrayList <NoeudVoisin> (ParametresGeneraux.nbrArretesMax);
+		noeudsVoisins = new NoeudVoisin[ParametresGeneraux.nbrArretesMax];
 		vectWarriors = new Vector<Warrior>();
 		noeudReseau = new NoeudReseau(this);
 		demandeursDAsile = new ArrayList<DemandeurDasile>();
@@ -320,7 +325,11 @@ public class Noeud
 	 * @param distanceVoisin la distance à ce voisin
 	 */
 	public void ajouterVoisin(int idVoisin, int distanceVoisin) {
-		noeudsVoisins.add(new NoeudVoisin(idVoisin, distanceVoisin));
+		int i = 0;
+		while (noeudsVoisins[i] == null)
+			i++;
+		noeudsVoisins[i] = new NoeudVoisin(idVoisin, distanceVoisin);
+		nombreVoisins ++;
 	}
 	
 	/**
@@ -331,7 +340,7 @@ public class Noeud
 	 * @param emplacement l'indice dans le tableau
 	 */
     public void ajouterVoisin(int idVoisin, int distanceVoisin, int emplacement) {
-        noeudsVoisins.add(emplacement, new NoeudVoisin(idVoisin, distanceVoisin));
+        noeudsVoisins[emplacement] = new NoeudVoisin(idVoisin, distanceVoisin);
     }
     
     /**
@@ -563,7 +572,7 @@ public class Noeud
 	}
 	
 	public int getNombreVoisins () {
-		return noeudsVoisins.size();
+		return nombreVoisins;
 	}
 	
 	public void setCoefficient(int coeff) {
@@ -615,7 +624,7 @@ public class Noeud
 	 * @return
 	 */
 	public int getDistanceVoisinParIndice(int i) {
-		return noeudsVoisins.get(i).getDistance();
+		return noeudsVoisins[i].getDistance();
 	}
 	
 	/**
@@ -633,7 +642,7 @@ public class Noeud
 	 * @return
 	 */
 	public NoeudVoisin getNoeudVoisinParIndice(int i) {
-		return noeudsVoisins.get(i);
+		return noeudsVoisins[i];
 	}
 	
 	/**
@@ -655,9 +664,9 @@ public class Noeud
 	 * @return
 	 */
 	public NoeudVoisin getNoeudVoisinParId(int idVoisin) {
-		for (int i=0; i<noeudsVoisins.size(); i++)
-			if (noeudsVoisins.get(i).getIdentifiantNoeud() == idVoisin)
-				return noeudsVoisins.get(i);
+		for (int i=0; i<nombreVoisins; i++)
+			if (noeudsVoisins[i].getIdentifiantNoeud() == idVoisin)
+				return noeudsVoisins[i];
 		assert(false);
 		return null;
 	}
