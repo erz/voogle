@@ -170,7 +170,7 @@ public class NoeudReseau
 	
 	public void envoyerDemandeMigration(int numeroInterface, String nomDemandeur) {
 		interfacesNoeudsReseau.get(numeroInterface).envoyer(new Trame(Trame.DEMANDE_MIGRATION, new DTDialogueMigration(nomDemandeur)));
-		noeud.armerCompteur(numeroInterface);
+		noeud.getNoeudVoisinParIndice(numeroInterface).demarrerChronometre();
 	}
 	
 	public void envoyerAutorisationMigration(int numeroInterface, String nomThreadAutorise) {
@@ -240,7 +240,7 @@ public class NoeudReseau
 								String nomThreadAutorise = ((DTDialogueMigration)trameRecue.getDonnee()).getNomDemandeur();
 								noeud.autoriserThreadAMigrer(nomThreadAutorise);
 							case Trame.SIGNAL_VIE :
-								noeud.armerCompteur(i);
+								noeud.getNoeudVoisinParIndice(i).stopperChronometre();
 								break;
 								
 							}
