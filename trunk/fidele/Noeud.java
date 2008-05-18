@@ -77,20 +77,9 @@ public class Noeud
 		 */
 		private int distance;
 		
-		private Chronometre chrono;
-		
 		public NoeudVoisin(int idVoisin, int distanceVoisin) {
 			idNoeud = idVoisin;
 			distance = distanceVoisin;
-		}
-		
-		public void demarrerChronometre() {
-			chrono = new Chronometre();
-			chrono.demarrer();
-		}
-		
-		public void stopperChronometre() {
-			chrono.stopper();
 		}
 		
 		public int getDistance() {
@@ -134,36 +123,6 @@ public class Noeud
 		public int getNumeroNoeudProvenance() {
 			return numeroNoeudProvenance;
 		}
-	}
-	
-	public class Chronometre extends Thread {
-		
-		private boolean continu;
-		private long dateDebut;
-
-		@Override
-		public void run() {
-			while (continu) {
-				if (System.currentTimeMillis() - dateDebut > ParametresGeneraux.tempsExpiration) {
-					fidele.notifierPanneNoeud(idNoeud);
-					continu = false;
-				}
-				
-				Util.attendre(300);
-			}
-			
-		}
-		
-		public void demarrer() {
-			dateDebut = System.currentTimeMillis();
-			continu = true;
-			start();
-		}
-		
-		public void stopper() {
-			continu = false;
-		}
-		
 	}
 	
 	/**
@@ -707,7 +666,11 @@ public class Noeud
 	 */
 	public Vector<Warrior> getListeWarrior() {
 		   return vectWarriors;
-		}
+	}
+	
+	public Fidele getFidele() {
+		return fidele;
+	}
 	
 	public int getCoefficient () {
 		return coefficient;

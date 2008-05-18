@@ -6,6 +6,7 @@ import java.net.ServerSocket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.TreeMap;
 
 import libWarThreads.DTDemandeInfo;
 import libWarThreads.DTDemandeInfoVoisin;
@@ -25,68 +26,7 @@ import libWarThreads.Trame;
  * Implantation physique d'un noeud
  *
  */
-public class NoeudReseau 
-{
-	/*
-	 * Compteur pour les accusés de reception 
-	 */
-	private class CompteurACK extends Thread
-	{
-		private int destinataire;
-		private boolean ackRecu; 
-		
-		public CompteurACK(NoeudReseau e)
-		{
-			System.out.println("Le compteur du noeud " + e.noeud.getId() + " a été créé.");
-			ackRecu = false;
-		}
-		
-		public void setDestinataire(int dest)
-		{
-			destinataire = dest;
-		}
-		
-		public void setRecu (boolean etat)
-		{
-			ackRecu = etat;
-		}
-		
-		@Override
-		public void run()
-		{
-			//Attente avant de considerer que le message est mort
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			if (ackRecu == false)
-			{
-				//Le message est mort, on traite la panne du noeud destinataire
-				resolPanne(destinataire);
-			}
-			ackRecu = false;
-		}
-	}
-	
-	/*
-	 * Le compteur servant à la reception des ACK
-	 */
-	private CompteurACK compteur;
-	
-	/*
-	 * Renouvelle le compteur
-	 */
-	private void renewCompteur()
-	{
-		//Si il y'a un compteur, on attend qu'il finisse
-		if (compteur != null)
-			while(compteur.isAlive() == true);
-		compteur = new CompteurACK(this);
-	}
-	
+public class NoeudReseau {
 	/**
 	 * L'ip de la machine locale
 	 */
@@ -113,12 +53,48 @@ public class NoeudReseau
 	 */
 	private Noeud noeud;
 	
+	private TreeMap<Integer, CompteurACK> compteursACK;
+	
+	/**
+	 * Compteur pour les accusés de reception 
+	 */
+	private class CompteurACK extends Thread
+	{
+		private int idDestinataire;
+		private boolean ackRecu; 
+		
+		public CompteurACK(int idNoeudDestinataire) {
+			idDestinataire = idNoeudDestinataire;
+			ackRecu = false;
+		}
+		
+		public void setRecu () {
+			ackRecu = true;
+		}
+		
+		@Override
+		public void run()
+		{
+			//Attente avant de considerer que le message est mort
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
+			if (ackRecu == false)
+				//Le message est mort, on traite la panne du noeud destinataire
+				noeud.getFidele().notifierPanneNoeud(idDestinataire);
+		}
+	}
+	
 	/**
 	 * Constructeur
 	 * @param noeud le noeud de la couche suprieure
 	 */
 	public NoeudReseau(Noeud noeud) {
 		this.noeud = noeud;
+		compteursACK = new TreeMap<Integer, CompteurACK>();
 		try {
 			ip = InetAddress.getLocalHost().getHostAddress().toString();
 		} catch (UnknownHostException e) {
@@ -152,14 +128,7 @@ public class NoeudReseau
 		}.start();
 	}
 	
-	public void envoyerThread(Warrior thread, int numInterface) 
-	{
-		//Gestion des pannes
-		//Au moment d'envoyer le thread, on lance le compteur pour attendre le ACK
-		renewCompteur();
-		compteur.setDestinataire(numInterface);
-		compteur.start();
-		
+	public void envoyerThread(Warrior thread, int numInterface) {
 		interfacesNoeudsReseau.get(numInterface).envoyer(new Trame(Trame.MIGRATION, new DTThreadMigrant(thread)));
 	}
 	
@@ -170,7 +139,9 @@ public class NoeudReseau
 	
 	public void envoyerDemandeMigration(int numeroInterface, String nomDemandeur) {
 		interfacesNoeudsReseau.get(numeroInterface).envoyer(new Trame(Trame.DEMANDE_MIGRATION, new DTDialogueMigration(nomDemandeur)));
-		noeud.getNoeudVoisinParIndice(numeroInterface).demarrerChronometre();
+		CompteurACK nouveauCompteur = new CompteurACK(noeud.getId());
+		nouveauCompteur.start();
+		compteursACK.put(numeroInterface, nouveauCompteur);
 	}
 	
 	public void envoyerAutorisationMigration(int numeroInterface, String nomThreadAutorise) {
@@ -191,9 +162,6 @@ public class NoeudReseau
 						if (trameRecue != null)
 							switch (trameRecue.getCode()) {
 							case Trame.MIGRATION :
-								//Gestion des panne : on a bien recu le thread
-								//On envoie une trame ACK au noeud qui l'a envoyé
-								interfacesNoeudsReseau.get(i).envoyer(new Trame(Trame.ACK, null));
 								noeud.recevoirThread(((DTThreadMigrant)trameRecue.getDonnee()).getWarrior());
 							
 								break;
@@ -212,21 +180,6 @@ public class NoeudReseau
 										new Trame(Trame.REPONSE_INFO_VOISIN, new DTReponseInfoVoisin(
 												noeud.getId(), noeud.getDistanceVoisinParId(idDemandeur))));
 								break;
-							/*case Trame.PANNE_NOEUD :
-								//le noeud est en panne, election du fidele qui l'hebergera 
-								int idPanne = ((DTPanneNoeud)trameRecue.getDonnee()).getIdNoeudPanne();
-								int nr = ((DTPanneNoeud)trameRecue.getDonnee()).getNoeudEmetteur();
-								int idReponse = nr;
-								interfacesNoeudsReseau.get(idReponse).envoyer(new Trame(Trame.ACK,null));
-								break;
-								*/
-							case Trame.ACK :
-								//le thread envoyé est bien arrivé
-								//On arrete le compteur de ACK
-								//System.out.println("On a bien recu un ACK de " + compteur.destinataire);
-								compteur.setRecu(true);
-								break;
-
 							case Trame.REPONSE_INFO_VOISIN :
 								int idVoisin = ((DTReponseInfoVoisin)trameRecue.getDonnee()).getNomVoisin();
 								int distanceVoisin = ((DTReponseInfoVoisin)trameRecue.getDonnee()).getDistanceAuVoisin();
@@ -235,12 +188,15 @@ public class NoeudReseau
 							case Trame.DEMANDE_MIGRATION :
 								String nomDemandeur = ((DTDialogueMigration)trameRecue.getDonnee()).getNomDemandeur();
 								noeud.ajouterUnDemandeurDAsile(nomDemandeur, i);
+								interfacesNoeudsReseau.get(i).envoyer(new Trame(Trame.SIGNAL_VIE, null));
 								break;
 							case Trame.AUTORISATION_MIGRATION :
 								String nomThreadAutorise = ((DTDialogueMigration)trameRecue.getDonnee()).getNomDemandeur();
 								noeud.autoriserThreadAMigrer(nomThreadAutorise);
+								break;
 							case Trame.SIGNAL_VIE :
-								noeud.getNoeudVoisinParIndice(i).stopperChronometre();
+								compteursACK.get(i).setRecu();
+								compteursACK.remove(i);
 								break;
 								
 							}
