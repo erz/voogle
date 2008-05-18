@@ -188,11 +188,16 @@ public class Noeud
 	}
 	
 	public void scruterExpirationVoisins() {
+		for (int i=0; i<noeudsVoisins.size(); i++)
+			noeudsVoisins.get(i).armer();
 		new Thread() {
 			@Override
 			public void run() {
 				while (true) {
-					
+					for (int i=0; i<noeudsVoisins.size(); i++)
+						if (noeudsVoisins.get(i).isExpire())
+							fidele.notifierPanneNoeud(noeudsVoisins.get(i).getIdentifiantNoeud());
+					Util.attendre(200);
 				}
 			}
 		}.start();

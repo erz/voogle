@@ -12,6 +12,7 @@ import libWarThreads.DTInfosThread;
 import libWarThreads.DTNouveauLien;
 import libWarThreads.DTNouveauNoeud;
 import libWarThreads.DTPanneFidele;
+import libWarThreads.DTPanneNoeud;
 import libWarThreads.DonneeTrame;
 import libWarThreads.InfoNoeud;
 import libWarThreads.InfoThread;
@@ -105,6 +106,10 @@ public class FideleReseau {
 	 */
 	public void envoyerInfoThread(InfoThread info) {
 		interfaceDieu.envoyer(new Trame(Trame.INFO_THREAD, new DTInfosThread(info)));
+	}
+	
+	public void envoyerNotificationPanneADieu(int idNoeudEnPanne) {
+		interfaceDieu.envoyer(new Trame(Trame.PANNE_NOEUD, new DTPanneNoeud(idNoeudEnPanne)));
 	}
 	
 	/**

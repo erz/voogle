@@ -219,14 +219,14 @@ public class NoeudReseau
 										new Trame(Trame.REPONSE_INFO_VOISIN, new DTReponseInfoVoisin(
 												noeud.getId(), noeud.getDistanceVoisinParId(idDemandeur))));
 								break;
-							case Trame.PANNE_NOEUD :
+							/*case Trame.PANNE_NOEUD :
 								//le noeud est en panne, election du fidele qui l'hebergera 
 								int idPanne = ((DTPanneNoeud)trameRecue.getDonnee()).getIdNoeudPanne();
 								int nr = ((DTPanneNoeud)trameRecue.getDonnee()).getNoeudEmetteur();
 								int idReponse = nr;
 								interfacesNoeudsReseau.get(idReponse).envoyer(new Trame(Trame.ACK,null));
 								break;
-								
+								*/
 							case Trame.ACK :
 								//le thread envoyé est bien arrivé
 								//On arrete le compteur de ACK
@@ -343,7 +343,7 @@ public class NoeudReseau
 		/////////////////
 		
 		
-		FideleReseau.getInterfaceDieu().envoyer(new Trame(Trame.PANNE_NOEUD,new DTPanneNoeud(noeud.getId(),destinataire)));
+		//FideleReseau.getInterfaceDieu().envoyer(new Trame(Trame.PANNE_NOEUD,new DTPanneNoeud(noeud.getId(),destinataire)));
 		//Dieu prévient tous les noeuds voisins du noeud en panne
 		//Dieu leur dit qui va recréer
 		//Dieu envoie au noeud voisin ayant le plus grand id une trame avec toutes les infos
