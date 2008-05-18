@@ -72,8 +72,8 @@ public class TactiqueWarrior implements Serializable
 					idCible = i; 
 			
 			}
-			System.out.println("idcible ="+temp);
-			System.out.println("N° voisin ="+idCible);
+			//System.out.println("idcible ="+temp);
+			//System.out.println("N° voisin ="+idCible);
 		}
 		//Sinon on choisit un thread au hasard
 		else
