@@ -77,20 +77,20 @@ public class Noeud
 		 */
 		private int distance;
 		
-		private long dateDepart;
+		private Chronometre chrono;
 		
 		public NoeudVoisin(int idVoisin, int distanceVoisin) {
 			idNoeud = idVoisin;
 			distance = distanceVoisin;
 		}
 		
-		public void armer() {
-			dateDepart = System.currentTimeMillis();
-			System.out.println("on rearme le noeud " + idNoeud);
+		public void demarrerChronometre() {
+			chrono = new Chronometre();
+			chrono.demarrer();
 		}
 		
-		public boolean isExpire() {
-			return System.currentTimeMillis() - dateDepart > ParametresGeneraux.tempsExpiration;
+		public void stopperChronometre() {
+			chrono.stopper();
 		}
 		
 		public int getDistance() {
@@ -126,8 +126,6 @@ public class Noeud
 			this.nomDemandeur = nomDemandeur;
 			this.numeroNoeudProvenance = numeroNoeudProvenance;
 		}
-		
-		
 		
 		public String getNomDemandeur() {
 			return nomDemandeur;
@@ -267,10 +265,6 @@ public class Noeud
 	 */
 	public void autoriserThreadAMigrer(String nomMigreur) {
 		this.getWarriorParNom(nomMigreur).deBloquer();
-	}
-	
-	public void armerCompteur(int numeroVoisin) {
-		noeudsVoisins.get(numeroVoisin).armer();
 	}
 	
 	/**
