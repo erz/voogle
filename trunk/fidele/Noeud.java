@@ -86,10 +86,11 @@ public class Noeud
 		
 		public void armer() {
 			dateDepart = System.currentTimeMillis();
+			System.out.println("on rearme le noeud " + idNoeud);
 		}
 		
 		public boolean isExpire() {
-			return dateDepart - System.currentTimeMillis() > ParametresGeneraux.tempsExpiration;
+			return System.currentTimeMillis() - dateDepart > ParametresGeneraux.tempsExpiration;
 		}
 		
 		public int getDistance() {
@@ -137,6 +138,36 @@ public class Noeud
 		}
 	}
 	
+	public class Chronometre extends Thread {
+		
+		private boolean continu;
+		private long dateDebut;
+
+		@Override
+		public void run() {
+			while (continu) {
+				if (System.currentTimeMillis() - dateDebut > ParametresGeneraux.tempsExpiration) {
+					fidele.notifierPanneNoeud(idNoeud);
+					continu = false;
+				}
+				
+				Util.attendre(300);
+			}
+			
+		}
+		
+		public void demarrer() {
+			dateDebut = System.currentTimeMillis();
+			continu = true;
+			start();
+		}
+		
+		public void stopper() {
+			continu = false;
+		}
+		
+	}
+	
 	/**
 	 * Constructeur
 	 * @param info l'info servant à construire le noeud
@@ -182,22 +213,6 @@ public class Noeud
 						demandeursDAsile.remove(0);
 					}
 					Util.attendre(50);
-				}
-			}
-		}.start();
-	}
-	
-	public void scruterExpirationVoisins() {
-		for (int i=0; i<noeudsVoisins.size(); i++)
-			noeudsVoisins.get(i).armer();
-		new Thread() {
-			@Override
-			public void run() {
-				while (true) {
-					for (int i=0; i<noeudsVoisins.size(); i++)
-						if (noeudsVoisins.get(i).isExpire())
-							fidele.notifierPanneNoeud(noeudsVoisins.get(i).getIdentifiantNoeud());
-					Util.attendre(200);
 				}
 			}
 		}.start();
@@ -343,7 +358,6 @@ public class Noeud
 	 * cf. NoeudBase.mettreEnAction()
 	 */
 	public void mettreEnAction() {
-		scruterExpirationVoisins();
 	}
 	
 	/**

@@ -135,6 +135,7 @@ public class DieuReseau {
 								break;
 							case Trame.PANNE_NOEUD :
 								//gerer une requete de panne
+								System.out.println("PAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANNNNNNNE");
 								gestionPanne(((DTPanneNoeud)trameRecue.getDonnee()).getIdNoeudPanne());
 								break;	
 							}
