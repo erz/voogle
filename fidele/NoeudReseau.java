@@ -170,18 +170,11 @@ public class NoeudReseau
 	
 	public void envoyerDemandeMigration(int numeroInterface, String nomDemandeur) {
 		interfacesNoeudsReseau.get(numeroInterface).envoyer(new Trame(Trame.DEMANDE_MIGRATION, new DTDialogueMigration(nomDemandeur)));
+		noeud.armerCompteur(numeroInterface);
 	}
 	
 	public void envoyerAutorisationMigration(int numeroInterface, String nomThreadAutorise) {
 		interfacesNoeudsReseau.get(numeroInterface).envoyer(new Trame(Trame.AUTORISATION_MIGRATION, new DTDialogueMigration(nomThreadAutorise)));
-	}
-	
-	/**
-	 * Envoie un signal à chaque voisin
-	 */
-	public void envoyerSignalVie() {
-		for (int i=0; i<interfacesNoeudsReseau.size(); i++)
-			interfacesNoeudsReseau.get(i).envoyer(new Trame(Trame.SIGNAL_VIE, null));
 	}
 	
 	/**
@@ -230,7 +223,7 @@ public class NoeudReseau
 							case Trame.ACK :
 								//le thread envoyé est bien arrivé
 								//On arrete le compteur de ACK
-								System.out.println("On a bien recu un ACK de " + compteur.destinataire);
+								//System.out.println("On a bien recu un ACK de " + compteur.destinataire);
 								compteur.setRecu(true);
 								break;
 
