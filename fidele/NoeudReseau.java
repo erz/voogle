@@ -125,7 +125,6 @@ public class NoeudReseau
 			e.printStackTrace();
 		}
 		connect = true;
-		//noeud.envoyerInfoAuFidele();
 		interfacesNoeudsReseau = new ArrayList<InterfaceReseau>();
 		try {
 			socketAttenteVoisins = new ServerSocket(portLocal ++);
@@ -178,9 +177,16 @@ public class NoeudReseau
 	}
 	
 	/**
+	 * Envoie un signal à chaque voisin
+	 */
+	public void envoyerSignalVie() {
+		for (int i=0; i<interfacesNoeudsReseau.size(); i++)
+			interfacesNoeudsReseau.get(i).envoyer(new Trame(Trame.SIGNAL_VIE, null));
+	}
+	
+	/**
 	 * Mthode qui scanne en continu successivement chacun des voisins et regarde pour chacun s'il possde
 	 * une donne dans sa file d'attente d'objets recus.
-	 *
 	 */
 	private void scannerInterfacesReseau() {
 		new Thread() {
@@ -240,6 +246,9 @@ public class NoeudReseau
 							case Trame.AUTORISATION_MIGRATION :
 								String nomThreadAutorise = ((DTDialogueMigration)trameRecue.getDonnee()).getNomDemandeur();
 								noeud.autoriserThreadAMigrer(nomThreadAutorise);
+							case Trame.SIGNAL_VIE :
+								noeud.armerCompteur(i);
+								break;
 								
 							}
 					}
