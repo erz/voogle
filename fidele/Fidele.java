@@ -58,6 +58,10 @@ public class Fidele {
 		fideleReseau.envoyerInfoThread(info);
 	}
 	
+	public void notifierPanneNoeud(int idNoeudEnPanne) {
+		fideleReseau.envoyerNotificationPanneADieu(idNoeudEnPanne);
+	}
+	
 	/**
 	 * Mets tous les noeuds du fidèle en action (pondaison pour les bases)
 	 * Fonction appelée une fois que le graphe a été implanté
