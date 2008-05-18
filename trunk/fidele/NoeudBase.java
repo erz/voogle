@@ -33,6 +33,7 @@ public class NoeudBase extends Noeud {
 	
 	@Override
 	public void mettreEnAction() {
+		super.mettreEnAction();
 		pondreEnContinu();
 	}
 	@Override

@@ -77,9 +77,19 @@ public class Noeud
 		 */
 		private int distance;
 		
+		private long dateDepart;
+		
 		public NoeudVoisin(int idVoisin, int distanceVoisin) {
 			idNoeud = idVoisin;
 			distance = distanceVoisin;
+		}
+		
+		public void armer() {
+			dateDepart = System.currentTimeMillis();
+		}
+		
+		public boolean isExpire() {
+			return dateDepart - System.currentTimeMillis() > ParametresGeneraux.tempsExpiration;
 		}
 		
 		public int getDistance() {
@@ -115,6 +125,8 @@ public class Noeud
 			this.nomDemandeur = nomDemandeur;
 			this.numeroNoeudProvenance = numeroNoeudProvenance;
 		}
+		
+		
 		
 		public String getNomDemandeur() {
 			return nomDemandeur;
@@ -175,6 +187,17 @@ public class Noeud
 		}.start();
 	}
 	
+	public void scruterExpirationVoisins() {
+		new Thread() {
+			@Override
+			public void run() {
+				while (true) {
+					
+				}
+			}
+		}.start();
+	}
+	
 	/**
 	 * Demande à la couche réseau d'initier une connexion en tant que client vers le noeud voisin
 	 * @param infoVoisin les infos du futur voisin qui attent en tant que serveur
@@ -224,6 +247,10 @@ public class Noeud
 	 */
 	public void autoriserThreadAMigrer(String nomMigreur) {
 		this.getWarriorParNom(nomMigreur).deBloquer();
+	}
+	
+	public void armerCompteur(int numeroVoisin) {
+		noeudsVoisins.get(numeroVoisin).armer();
 	}
 	
 	/**
@@ -311,7 +338,7 @@ public class Noeud
 	 * cf. NoeudBase.mettreEnAction()
 	 */
 	public void mettreEnAction() {
-		
+		scruterExpirationVoisins();
 	}
 	
 	/**
