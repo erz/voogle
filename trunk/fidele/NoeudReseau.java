@@ -18,6 +18,7 @@ import libWarThreads.DTReponseInfo;
 import libWarThreads.DTReponseInfoVoisin;
 import libWarThreads.InfoNoeud;
 import libWarThreads.InterfaceReseau;
+import libWarThreads.ParametresGeneraux;
 import libWarThreads.Trame;
 
 
@@ -77,7 +78,7 @@ public class NoeudReseau {
 		{
 			//Attente avant de considerer que le message est mort
 			try {
-				Thread.sleep(2000);
+				Thread.sleep(ParametresGeneraux.tempsExpiration);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

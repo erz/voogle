@@ -223,7 +223,9 @@ public class Noeud
 	 * @param nomMigreur le nom du thread autorisé à migrer
 	 */
 	public void autoriserThreadAMigrer(String nomMigreur) {
-		this.getWarriorParNom(nomMigreur).deBloquer();
+		// A VERIFIER
+		if (this.getWarriorParNom(nomMigreur) != null)
+			this.getWarriorParNom(nomMigreur).deBloquer();
 	}
 	
 	/**
