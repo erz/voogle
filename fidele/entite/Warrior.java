@@ -130,7 +130,7 @@ public class Warrior extends Thread implements Serializable
 		Util.attendre(500);
 	}
 	
-	public void tuer() {
+	public void mourrir() {
 		etat = Warrior.ETAT_MORT;
 		stop = true;
 	}
@@ -170,7 +170,7 @@ public class Warrior extends Thread implements Serializable
 	/**
 	 *  Tentative de capture du noeud 
 	 */
-	public void attaquer() {
+	public void combattre() {
 		//Attaque du noeud courant
 		etat = Warrior.ETAT_CAPTURE;
 		Util.attendre(1000);
