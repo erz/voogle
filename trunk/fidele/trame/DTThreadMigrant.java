@@ -1,7 +1,7 @@
 package fidele.trame;
 
 import libWarThreads.DonneeTrame;
-import fidele.Warrior;
+import fidele.entite.Warrior;
 
 @SuppressWarnings("serial")
 public class DTThreadMigrant extends DonneeTrame {

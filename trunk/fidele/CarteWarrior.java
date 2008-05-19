@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.TreeMap;
 
+import fidele.entite.Noeud;
+
 import libWarThreads.ParametresGeneraux;
 import libWarThreads.Util;
 

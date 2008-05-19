@@ -13,6 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import fidele.entite.Fidele;
+
 import libWarThreads.Console;
 
 @SuppressWarnings("serial")

@@ -1,4 +1,4 @@
-package fidele;
+package fidele.entite;
 
 import java.io.IOException;
 import java.net.InetAddress;
