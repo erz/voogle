@@ -22,7 +22,7 @@ public class TactiqueWarrior implements Serializable
 	public static final int TACTIQUE_DEFENSIVE = 1;
 	public static final int TACTIQUE_EXPLORATION = 2;
 	
-	
+	private int[] actions;
 	private int tactique ;
 	private ArrayList <Integer> cheminAParcourir ;
 	private int idCible;
@@ -34,19 +34,29 @@ public class TactiqueWarrior implements Serializable
 		this.tactique = tactique ;
 		this.cheminAParcourir = cheminAParcourir;
 		this.guerrier = warrior;
+		actions = new int[3];
 		if(tactique == TACTIQUE_EXPLORATION)
 			TactiqueExploration();
 		if(tactique == TACTIQUE_OFFENSIVE)
 			TactiqueOffensive();
 		if(tactique == TACTIQUE_DEFENSIVE)
 			TactiqueDefensive();
-		
+		if(tactique == TACTIQUE_INDETERMINEE );
+			TactiqueIndeterminee();
 	}
 	
 	public TactiqueWarrior ()
 	{
 		this.tactique = -1 ;
 		this.cheminAParcourir = null;
+		actions = new int[3];
+		actions[0]=1;
+		actions[1]=2;
+	}
+	
+	private void TactiqueIndeterminee(){
+		actions[0]=1;
+		actions[1]=2;
 	}
 	
 	private void TactiqueExploration()
@@ -85,6 +95,8 @@ public class TactiqueWarrior implements Serializable
 			idCible = (int) (Math.random()*guerrier.getNoeud().getNombreVoisins());
 		}
 		
+		actions[0]=1;
+		actions[1]=2;
 	}
 	
 	private void TactiqueDefensive(){
@@ -124,10 +136,12 @@ public class TactiqueWarrior implements Serializable
 						idCible = i; 
 				
 				}
-				
+				actions[0]=1;
+				actions[1]=2;
 				//et on le supprime de la liste du chemin
 				cheminAParcourir.remove(0);
 				System.out.println("le nouveau chemin est :"+ cheminAParcourir);
+				
 			}
 			else
 			{
@@ -138,6 +152,9 @@ public class TactiqueWarrior implements Serializable
 						idCible = i; 
 				
 				}
+				
+				actions[0]=1;
+				actions[1]=2;
 				//et on le supprime de la liste du chemin
 				cheminAParcourir.remove(0);
 			}
@@ -154,6 +171,9 @@ public class TactiqueWarrior implements Serializable
 		cheminAParcourir.remove(idNoeud);
 	}
 	
+	public int getActions(int i){
+		return actions[i];
+	}
 	public int getIdCible(){
 		return idCible;
 	}
