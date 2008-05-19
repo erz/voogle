@@ -36,6 +36,8 @@ public class TactiqueWarrior implements Serializable
 			TactiqueExploration();
 		if(tactique == TACTIQUE_OFFENSIVE)
 			TactiqueOffensive();
+		if(tactique == TACTIQUE_DEFENSIVE)
+			TactiqueDefensive();
 		
 	}
 	
@@ -80,6 +82,10 @@ public class TactiqueWarrior implements Serializable
 		{
 			idCible = (int) (Math.random()*guerrier.getNoeud().getNombreVoisins());
 		}
+		
+	}
+	
+	private void TactiqueDefensive(){
 		
 	}
 	
