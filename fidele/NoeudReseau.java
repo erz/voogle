@@ -9,14 +9,14 @@ import java.util.Iterator;
 import java.util.TreeMap;
 
 import fidele.trame.DTDemandeInfo;
+import fidele.trame.DTDemandeInfoVoisin;
+import fidele.trame.DTDialogueMigration;
+import fidele.trame.DTReponseInfo;
+import fidele.trame.DTReponseInfoVoisin;
+import fidele.trame.DTThreadMigrant;
 
-import libWarThreads.DTDemandeInfoVoisin;
-import libWarThreads.DTDialogueMigration;
 import libWarThreads.DTInfosNoeud;
-import libWarThreads.DTThreadMigrant;
 import libWarThreads.DTPanneNoeud;
-import libWarThreads.DTReponseInfo;
-import libWarThreads.DTReponseInfoVoisin;
 import libWarThreads.InfoNoeud;
 import libWarThreads.InterfaceReseau;
 import libWarThreads.ParametresGeneraux;

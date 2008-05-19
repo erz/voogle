@@ -1,5 +1,6 @@
-package libWarThreads;
+package fidele.trame;
 
+import libWarThreads.DonneeTrame;
 import fidele.Warrior;
 
 @SuppressWarnings("serial")
