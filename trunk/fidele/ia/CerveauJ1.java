@@ -97,7 +97,7 @@ public class CerveauJ1 extends Cerveau
 		{
 			if(guerrier.getTactique().getActions(i) == 1)
 			{
-					guerrier.attaquer();
+					guerrier.combattre();
 					
 			}
 			if(guerrier.getTactique().getActions(i) == 2)
