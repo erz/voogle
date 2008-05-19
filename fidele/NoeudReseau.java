@@ -8,7 +8,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.TreeMap;
 
-import libWarThreads.DTDemandeInfo;
+import fidele.trame.DTDemandeInfo;
+
 import libWarThreads.DTDemandeInfoVoisin;
 import libWarThreads.DTDialogueMigration;
 import libWarThreads.DTInfosNoeud;
