@@ -1,7 +1,7 @@
 package fidele.trame;
 
-import libWarThreads.DonneeTrame;
 import libWarThreads.InfoNoeud;
+import libWarThreads.trame.DonneeTrame;
 
 @SuppressWarnings("serial")
 public class DTReponseInfo extends DonneeTrame {

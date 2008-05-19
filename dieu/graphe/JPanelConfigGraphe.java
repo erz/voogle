@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 
 import libWarThreads.ParametresGeneraux;
 
-import dieu.JFrameDieu;
+import dieu.ihm.JFrameDieu;
 
 @SuppressWarnings("serial")
 public class JPanelConfigGraphe extends JPanel 

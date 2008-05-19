@@ -1,7 +1,7 @@
 package tests;
 
-import dieu.JFrameDieu;
-import fidele.JFrameFidele;
+import dieu.ihm.JFrameDieu;
+import fidele.ihm.JFrameFidele;
 
 public class Main {
 
