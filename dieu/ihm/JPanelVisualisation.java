@@ -39,7 +39,7 @@ import dieu.graphe.JPanelCelluleWarrior;
 import fidele.entite.Warrior;
 
 @SuppressWarnings("serial")
-public class JPanelVueJeu extends JPanel implements Observer
+public class JPanelVisualisation extends JPanel implements Observer
 {
 	// Informations sur le graphe  reprsenter
 	private Graphe graphe = null ;
@@ -52,7 +52,7 @@ public class JPanelVueJeu extends JPanel implements Observer
 
 	public Lock verrouReload = null ;
 	
-	public JPanelVueJeu()
+	public JPanelVisualisation()
 	{
 		super();
 		setVisible(true);
@@ -251,7 +251,7 @@ public class JPanelVueJeu extends JPanel implements Observer
 				int xCur = xDep ;
 				int yCur = yDep ;
 				
-				Graphics g = JPanelVueJeu.this.jgraph.getGraphics();
+				Graphics g = JPanelVisualisation.this.jgraph.getGraphics();
 				
 				while (distanceActuelle < distanceFinale)
 				{

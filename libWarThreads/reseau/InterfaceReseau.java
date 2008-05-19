@@ -54,7 +54,7 @@ public class InterfaceReseau {
 			socket.connect(new InetSocketAddress(ip, port), delaiConnection);
 			out = new ObjectOutputStream(socket.getOutputStream());
 			in = new ObjectInputStream(socket.getInputStream());
-			recevoir();
+			recevoirEtStockerTrames();
 			return true;
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
@@ -71,7 +71,7 @@ public class InterfaceReseau {
 			socket = serveur.accept();
 			out = new ObjectOutputStream(socket.getOutputStream());
 			in = new ObjectInputStream(socket.getInputStream());
-			recevoir();
+			recevoirEtStockerTrames();
 			return true;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -97,7 +97,7 @@ public class InterfaceReseau {
 	 * Reception d'une trame sur le flux d'entrée et mise en file d'attente de celle-ci
 	 *
 	 */
-	public void recevoir() {
+	public void recevoirEtStockerTrames() {
 		new Thread() {
 			@Override
 			public void run() {

@@ -36,7 +36,7 @@ public class JPanelCelluleNoeud extends JPanel
 	public void initialiser()
 	{
 		setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
-		setBorder(new JolisPetitsCoinsToutEnArrondis(Color.BLACK,10,10));
+		setBorder(new ContourNoeud(Color.BLACK,10,10));
 		setBackground(Color.GRAY);
 		setFocusable(false);
 		setSize(40,40);

@@ -39,7 +39,7 @@ public class DieuReseau {
 		decoderTrames();
 	}
 	
-	public void scannerMachines() {
+	public void scannerReseau() {
 		scanEnCours = true;
 		new Thread() {
 			@Override

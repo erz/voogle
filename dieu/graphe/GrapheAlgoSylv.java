@@ -153,7 +153,7 @@ public class GrapheAlgoSylv
 					Cercle cercle = new Cercle (new Coordonnees(vectNoeuds.get(i).getXPos(),vectNoeuds.get(i).getYPos()));
 					cercle.setCoordonneesPoint(new Coordonnees (vectNoeuds.get(j+i).getXPos(),vectNoeuds.get(j+i).getYPos()));
 					
-					graphe.ajouterLien(new Lien(vectNoeuds.get(i), vectNoeuds.get(j+i), (int) cercle.getRayon()));
+					graphe.ajouterLien(new LienGraphe(vectNoeuds.get(i), vectNoeuds.get(j+i), (int) cercle.getRayon()));
 				}
 			}
 		}

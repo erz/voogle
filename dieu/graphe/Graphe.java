@@ -5,28 +5,22 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Vector;
 
-import libWarThreads.general.ParametresGeneraux;
 import libWarThreads.reseau.InfoModification;
 import libWarThreads.reseau.InfoNoeud;
 import libWarThreads.reseau.InfoThread;
-
-import fidele.entite.Noeud;
-
-import dieu.ihm.JFrameDieu;
-import dieu.ihm.JPanelVueJeu;
 
 public class Graphe extends Observable
 {
 	private Vector <NoeudGraphe> vectNoeuds;
 	
-	private ArrayList<Lien> liens;
+	private ArrayList<LienGraphe> liens;
 	
 	public Graphe() {
 		vectNoeuds = new Vector<NoeudGraphe>();
-		liens = new ArrayList<Lien>();
+		liens = new ArrayList<LienGraphe>();
 	}
 	
-	public void initialiser() {
+	public void construire() {
 		GrapheAlgoSylv grapheAlgo = new GrapheAlgoSylv (this);
 		vectNoeuds = grapheAlgo.getVectNoeud();
 	}
@@ -68,7 +62,7 @@ public class Graphe extends Observable
 		vectNoeuds.add(noeud);
 	}
 	
-	public void ajouterLien(Lien lien) {
+	public void ajouterLien(LienGraphe lien) {
 		liens.add(lien);
 	}
 	
@@ -77,7 +71,7 @@ public class Graphe extends Observable
 		return vectNoeuds.get(i);
 	}
 	
-	public Lien getLien(int i) {
+	public LienGraphe getLien(int i) {
 		return liens.get(i);
 	}
 	

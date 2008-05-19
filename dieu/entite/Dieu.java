@@ -88,7 +88,7 @@ public class Dieu extends Observable {
 	
 	public void rechercherDesFideles(boolean demarrage) {
 		if (demarrage)
-			dieuReseau.scannerMachines();
+			dieuReseau.scannerReseau();
 		else
 			dieuReseau.arreterScan();
 	}

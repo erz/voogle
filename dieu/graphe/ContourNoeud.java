@@ -11,7 +11,7 @@ import javax.swing.border.Border;
  
  
  
-public class JolisPetitsCoinsToutEnArrondis implements Border {  
+public class ContourNoeud implements Border {  
 	
 	private Color couleur;
 	private int largeurArc;
@@ -20,7 +20,7 @@ public class JolisPetitsCoinsToutEnArrondis implements Border {
 	
 	
 	
-	public JolisPetitsCoinsToutEnArrondis(Color couleur, int largeurArc, int hauteurArc)  {
+	public ContourNoeud(Color couleur, int largeurArc, int hauteurArc)  {
 		this.couleur = couleur;
 		this.largeurArc = largeurArc;
 		this.hauteurArc = hauteurArc;
