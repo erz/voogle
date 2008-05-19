@@ -72,14 +72,14 @@ public class CerveauJ2 extends Cerveau
 		//Le noeud est neutre : on essaye de le prendre
 		if (guerrier.getNoeud().getProprietaire() == -1)
 		{
-			guerrier.attaquer();
+			guerrier.combattre();
 			return;
 		}
 		
 		//Le noeud n'est pas neutre : on regarde si on a une chance
 		if (nbThreadsA >= (nbThreadsE + coeff))
 		{
-			guerrier.attaquer();
+			guerrier.combattre();
 			return;
 		}
 		
