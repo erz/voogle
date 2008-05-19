@@ -2,8 +2,8 @@ package dieu.graphe;
 
 import java.util.Vector;
 
-import libWarThreads.ParametresGeneraux;
-import libWarThreads.Util;
+import libWarThreads.general.ParametresGeneraux;
+import libWarThreads.util.Util;
 
 
 

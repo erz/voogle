@@ -5,8 +5,8 @@ import java.util.Iterator;
 import java.util.TreeMap;
 import java.util.Vector;
 
-import libWarThreads.InfoNoeud;
-import libWarThreads.Util;
+import libWarThreads.reseau.InfoNoeud;
+import libWarThreads.util.Util;
 
 import fidele.entite.Warrior;
 

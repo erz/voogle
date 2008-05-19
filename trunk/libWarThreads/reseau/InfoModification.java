@@ -1,4 +1,4 @@
-package libWarThreads;
+package libWarThreads.reseau;
 
 import java.io.Serializable;
 

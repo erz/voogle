@@ -3,7 +3,7 @@ package dieu.graphe;
 import java.util.ArrayList;
 import java.util.Vector;
 
-import libWarThreads.InfoNoeud;
+import libWarThreads.reseau.InfoNoeud;
 
 public class NoeudGraphe 
 {

@@ -9,7 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import libWarThreads.InfoNoeud;
+import libWarThreads.reseau.InfoNoeud;
 
 public class JPanelCelluleNoeud extends JPanel
 {

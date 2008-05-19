@@ -7,7 +7,7 @@ import java.util.TreeMap;
 
 import fidele.entite.Warrior;
 
-import libWarThreads.InfoNoeud;
+import libWarThreads.reseau.InfoNoeud;
 
 /**
  * Tactique actuelle du thread

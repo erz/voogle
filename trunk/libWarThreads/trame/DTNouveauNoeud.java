@@ -1,6 +1,6 @@
 package libWarThreads.trame;
 
-import libWarThreads.InfoNoeud;
+import libWarThreads.reseau.InfoNoeud;
 
 @SuppressWarnings("serial")
 public class DTNouveauNoeud extends DonneeTrame {

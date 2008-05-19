@@ -2,9 +2,9 @@ package fidele.entite;
 
 import java.util.TreeMap;
 
-import libWarThreads.Console;
-import libWarThreads.InfoNoeud;
-import libWarThreads.InfoThread;
+import libWarThreads.reseau.InfoNoeud;
+import libWarThreads.reseau.InfoThread;
+import libWarThreads.util.Console;
 
 import fidele.ia.*;
 

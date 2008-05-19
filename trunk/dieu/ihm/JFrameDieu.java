@@ -8,7 +8,7 @@ import javax.swing.JTabbedPane;
 
 import dieu.entite.Dieu;
 
-import libWarThreads.Console;
+import libWarThreads.util.Console;
 
 /**
  * Fenêtre graphique du programme dieu

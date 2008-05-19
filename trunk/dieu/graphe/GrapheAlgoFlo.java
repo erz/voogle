@@ -3,7 +3,7 @@ package dieu.graphe;
 import java.util.ArrayList;
 import java.util.Vector;
 
-import libWarThreads.ParametresGeneraux;
+import libWarThreads.general.ParametresGeneraux;
 
 public class GrapheAlgoFlo 
 {
