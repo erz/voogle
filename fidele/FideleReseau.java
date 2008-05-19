@@ -6,6 +6,9 @@ import java.util.TreeMap;
 
 import com.sun.corba.se.impl.javax.rmi.CORBA.Util;
 
+import fidele.entite.Fidele;
+import fidele.entite.Noeud;
+
 import libWarThreads.DTDebut;
 import libWarThreads.DTInfosNoeud;
 import libWarThreads.DTInfosThread;

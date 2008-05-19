@@ -1,4 +1,4 @@
-package fidele;
+package fidele.entite;
 
 import java.util.TreeMap;
 
@@ -6,6 +6,7 @@ import libWarThreads.Console;
 import libWarThreads.InfoNoeud;
 import libWarThreads.InfoThread;
 
+import fidele.FideleReseau;
 import fidele.ia.*;
 
 public class Fidele {

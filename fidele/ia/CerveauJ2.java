@@ -4,6 +4,8 @@ package fidele.ia;
 import java.util.ArrayList;
 import java.util.Vector;
 import fidele.*;
+import fidele.entite.Noeud;
+import fidele.entite.Warrior;
 
 public class CerveauJ2 extends Cerveau
 {

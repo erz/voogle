@@ -1,6 +1,6 @@
 package libWarThreads;
 
-import fidele.Noeud;
+import fidele.entite.Noeud;
 
 @SuppressWarnings("serial")
 public class InfoNoeud extends InfoModification {

@@ -1,6 +1,6 @@
 package libWarThreads;
 
-import fidele.Warrior;
+import fidele.entite.Warrior;
 
 @SuppressWarnings("serial")
 public class InfoThread extends InfoModification {

@@ -10,7 +10,7 @@ import libWarThreads.InfoNoeud;
 import libWarThreads.InfoThread;
 import libWarThreads.ParametresGeneraux;
 
-import fidele.Noeud;
+import fidele.entite.Noeud;
 
 import dieu.JFrameDieu;
 import dieu.JPanelVueJeu;

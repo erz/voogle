@@ -11,7 +11,7 @@ import libWarThreads.Util;
 import fidele.CarteWarrior;
 import fidele.Dijkstra;
 import fidele.TactiqueWarrior;
-import fidele.Warrior;
+import fidele.entite.Warrior;
 
 public class CerveauJ1 extends Cerveau
 {

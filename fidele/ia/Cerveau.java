@@ -2,7 +2,7 @@ package fidele.ia;
 
 import java.util.Vector;
 
-import fidele.Warrior;
+import fidele.entite.Warrior;
 
 /*
  * Cette classe est destinée à être dérivée par autant de joueurs qui veulent jouer

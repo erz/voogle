@@ -36,7 +36,7 @@ import dieu.graphe.Coordonnees;
 import dieu.graphe.Graphe;
 import dieu.graphe.JPanelCelluleNoeud;
 import dieu.graphe.JPanelCelluleWarrior;
-import fidele.Warrior;
+import fidele.entite.Warrior;
 
 @SuppressWarnings("serial")
 public class JPanelVueJeu extends JPanel implements Observer
