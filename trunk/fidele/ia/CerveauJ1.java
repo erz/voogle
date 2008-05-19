@@ -93,7 +93,19 @@ public class CerveauJ1 extends Cerveau
 	public void agir(Warrior guerrier) 
 	{
 		
-		guerrier.attaquer();
-		guerrier.demanderAutorisationMigration(idNoeudCible);
+		for(int i=0;i<3;i++)
+		{
+			if(guerrier.getTactique().getActions(i) == 1)
+			{
+					guerrier.attaquer();
+					
+			}
+			if(guerrier.getTactique().getActions(i) == 2)
+			{
+					guerrier.demanderAutorisationMigration(idNoeudCible);
+			}
+		}
+		//guerrier.attaquer();
+		//guerrier.demanderAutorisationMigration(idNoeudCible);
 	}
 }
