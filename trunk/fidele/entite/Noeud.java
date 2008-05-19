@@ -270,7 +270,7 @@ public class Noeud
 		vectWarriors.remove(temp);
 		envoyerInfoNoeudAuFidele();
 		// terminaison du run()
-		thread.tuer();
+		thread.mourrir();
 	
 		
 	}
