@@ -1,7 +1,5 @@
 package libWarThreads.reseau;
 
-import fidele.entite.Noeud;
-
 @SuppressWarnings("serial")
 public class InfoNoeud extends InfoModification {
 
@@ -23,14 +21,14 @@ public class InfoNoeud extends InfoModification {
 	
 	private int frequencePondaison = 10;
 	
-	public InfoNoeud(Noeud noeud) {
-		identifiantNoeud = noeud.getId();
-		connecté = noeud.getNoeudReseau().isConnect();
-		proprietaire = noeud.getProprietaire();
-		proprietairesThreads = new int[noeud.getNombreThreads()];
-		System.arraycopy(noeud.getProprietairesThreads(), 0, proprietairesThreads, 0, noeud.getNombreThreads());
-		ip = noeud.getNoeudReseau().getIp();
-		port = noeud.getNoeudReseau().getPortLocal();
+	public InfoNoeud(int id, boolean connect, int proprio, int nbThreads, int[] propriosThreads, String IP, int por) {
+		identifiantNoeud = id;
+		connecté = connect;
+		proprietaire = proprio;
+		proprietairesThreads = new int[nbThreads];
+		System.arraycopy(propriosThreads, 0, proprietairesThreads, 0, nbThreads);
+		ip = IP;
+		port = por;
 	}
 	
 	public InfoNoeud(int identifiant) {

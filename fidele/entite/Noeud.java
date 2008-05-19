@@ -153,6 +153,18 @@ public class Noeud
 		scruterDemandeursDasile();
 	}
 	
+	public InfoNoeud creerInfoNoeud() {
+		return new InfoNoeud(
+				idNoeud,
+				noeudReseau.isConnect(),
+				proprietaire,
+				getNombreThreads(),
+				getProprietairesThreads(),
+				noeudReseau.getIp(),
+				noeudReseau.getPortLocal()
+				);
+	}
+	
 	
 	/**
 	 * Scrute en permanence la liste des threads souhaitant migrer sur ce noeud.
@@ -190,7 +202,7 @@ public class Noeud
 	 * Transmet l'info de ce noeud au fidèle
 	 */
 	public void envoyerInfoNoeudAuFidele() {
-		fidele.envoyerInfoNoeudADieu(new InfoNoeud(this));
+		fidele.envoyerInfoNoeudADieu(creerInfoNoeud());
 	}
 	
 	/**
@@ -198,7 +210,7 @@ public class Noeud
 	 * @param w
 	 */
 	public void envoyerInfoThreadAuFidele(Warrior w) {
-		fidele.envoyerInfoThreadADieu(new InfoThread(w));
+		fidele.envoyerInfoThreadADieu(w.creerInfoThread());
 	}
 	
 	/**
