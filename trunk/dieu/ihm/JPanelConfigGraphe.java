@@ -1,4 +1,4 @@
-package dieu.graphe;
+package dieu.ihm;
 
 import java.awt.GridLayout;
 
@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 
 import libWarThreads.general.ParametresGeneraux;
 
-import dieu.ihm.JFrameDieu;
+import dieu.graphe.Graphe;
 
 @SuppressWarnings("serial")
 public class JPanelConfigGraphe extends JPanel 
@@ -101,7 +101,7 @@ public class JPanelConfigGraphe extends JPanel
 															   45,
 															   estModePuit) ;
 				Graphe graphe = JPanelConfigGraphe.this.jFrameDieu.getDieu().getGraphe();
-				graphe.initialiser();
+				graphe.construire();
 				JPanelConfigGraphe.this.jFrameDieu.getJPanelVueJeu().initialiser(graphe);
 			}
 		});

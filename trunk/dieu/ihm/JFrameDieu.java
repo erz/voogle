@@ -22,7 +22,7 @@ public class JFrameDieu extends JFrame {
 	private JTabbedPane onglets;
 
 	JPanelConfiguration jPanelConfiguration = null ;
-	public JPanelVueJeu jPanelVueJeu = null ;
+	public JPanelVisualisation jPanelVueJeu = null ;
 	
 	public JFrameDieu() {
 		Container contenu = getContentPane();
@@ -31,7 +31,7 @@ public class JFrameDieu extends JFrame {
 		dieu = new Dieu();
 		onglets = new JTabbedPane(JTabbedPane.TOP);
 		onglets.addTab("Configuration",jPanelConfiguration = new JPanelConfiguration(this));
-		onglets.addTab("Visualisation",jPanelVueJeu = new JPanelVueJeu());
+		onglets.addTab("Visualisation",jPanelVueJeu = new JPanelVisualisation());
 		contenu.add(BorderLayout.CENTER, onglets);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -44,7 +44,7 @@ public class JFrameDieu extends JFrame {
 		return dieu;
 	}
 
-	public JPanelVueJeu getJPanelVueJeu()
+	public JPanelVisualisation getJPanelVueJeu()
 	{
 		return jPanelVueJeu ;
 	}
