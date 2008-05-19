@@ -1,4 +1,4 @@
-package libWarThreads;
+package libWarThreads.util;
 
 import java.lang.Math;
 

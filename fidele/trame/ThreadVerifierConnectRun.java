@@ -5,7 +5,7 @@ package fidele.trame;
 
 import java.util.TreeMap;
 
-import libWarThreads.InfoNoeud;
+import libWarThreads.reseau.InfoNoeud;
 
 /**
  * @author Jean-Marc MUZI

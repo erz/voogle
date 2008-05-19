@@ -1,6 +1,6 @@
 package fidele.entite;
 
-import libWarThreads.InfoNoeud;
+import libWarThreads.reseau.InfoNoeud;
 
 public class NoeudBase extends Noeud {
 

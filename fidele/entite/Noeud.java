@@ -7,10 +7,10 @@ import java.util.TreeMap;
 import java.util.Vector;
 
 
-import libWarThreads.InfoNoeud;
-import libWarThreads.InfoThread;
-import libWarThreads.ParametresGeneraux;
-import libWarThreads.Util;
+import libWarThreads.general.ParametresGeneraux;
+import libWarThreads.reseau.InfoNoeud;
+import libWarThreads.reseau.InfoThread;
+import libWarThreads.util.Util;
 
 public class Noeud 
 {	

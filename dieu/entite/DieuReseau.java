@@ -9,9 +9,8 @@ import java.util.Iterator;
 import java.util.Vector;
 
 
-import libWarThreads.Console;
-import libWarThreads.InfoNoeud;
-import libWarThreads.InterfaceReseau;
+import libWarThreads.reseau.InfoNoeud;
+import libWarThreads.reseau.InterfaceReseau;
 import libWarThreads.trame.DTDebut;
 import libWarThreads.trame.DTInfosNoeud;
 import libWarThreads.trame.DTInfosThread;
@@ -20,6 +19,7 @@ import libWarThreads.trame.DTNouveauNoeud;
 import libWarThreads.trame.DTPanneFidele;
 import libWarThreads.trame.DTPanneNoeud;
 import libWarThreads.trame.Trame;
+import libWarThreads.util.Console;
 
 public class DieuReseau {
 	

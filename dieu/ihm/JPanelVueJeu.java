@@ -14,9 +14,9 @@ import java.util.concurrent.locks.ReentrantLock;
 
 import javax.swing.JPanel;
 
-import libWarThreads.InfoModification;
-import libWarThreads.InfoNoeud;
-import libWarThreads.InfoThread;
+import libWarThreads.reseau.InfoModification;
+import libWarThreads.reseau.InfoNoeud;
+import libWarThreads.reseau.InfoThread;
 
 import org.jgraph.JGraph;
 import org.jgraph.graph.CellView;

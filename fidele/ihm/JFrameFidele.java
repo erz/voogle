@@ -15,7 +15,7 @@ import javax.swing.JTextField;
 
 import fidele.entite.Fidele;
 
-import libWarThreads.Console;
+import libWarThreads.util.Console;
 
 @SuppressWarnings("serial")
 public class JFrameFidele extends JFrame {

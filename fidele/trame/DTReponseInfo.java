@@ -1,6 +1,6 @@
 package fidele.trame;
 
-import libWarThreads.InfoNoeud;
+import libWarThreads.reseau.InfoNoeud;
 import libWarThreads.trame.DonneeTrame;
 
 @SuppressWarnings("serial")

@@ -1,6 +1,6 @@
 package libWarThreads.trame;
 
-import libWarThreads.InfoThread;
+import libWarThreads.reseau.InfoThread;
 
 @SuppressWarnings("serial")
 public class DTInfosThread extends DonneeTrame {

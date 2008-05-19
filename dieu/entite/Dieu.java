@@ -6,8 +6,8 @@ import java.util.TreeMap;
 
 import dieu.graphe.Graphe;
 
-import libWarThreads.InfoModification;
-import libWarThreads.InfoNoeud;
+import libWarThreads.reseau.InfoModification;
+import libWarThreads.reseau.InfoNoeud;
 
 
 /**

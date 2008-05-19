@@ -1,4 +1,4 @@
-package libWarThreads;
+package libWarThreads.util;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;

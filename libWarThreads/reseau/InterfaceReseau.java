@@ -1,4 +1,4 @@
-package libWarThreads;
+package libWarThreads.reseau;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -11,6 +11,7 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 
 import libWarThreads.trame.Trame;
+import libWarThreads.util.Console;
 
 
 /**

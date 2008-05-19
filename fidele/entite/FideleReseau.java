@@ -7,9 +7,9 @@ import java.util.TreeMap;
 import com.sun.corba.se.impl.javax.rmi.CORBA.Util;
 
 
-import libWarThreads.InfoNoeud;
-import libWarThreads.InfoThread;
-import libWarThreads.InterfaceReseau;
+import libWarThreads.reseau.InfoNoeud;
+import libWarThreads.reseau.InfoThread;
+import libWarThreads.reseau.InterfaceReseau;
 import libWarThreads.trame.DTDebut;
 import libWarThreads.trame.DTInfosNoeud;
 import libWarThreads.trame.DTInfosThread;
@@ -51,7 +51,7 @@ public class FideleReseau {
 					//A chaque Noeud
 					
 					//Attendre 1 seconde
-					libWarThreads.Util.attendre(1000);
+					libWarThreads.util.Util.attendre(1000);
 				}
 			}
 		}).start();

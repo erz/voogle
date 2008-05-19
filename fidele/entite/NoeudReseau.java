@@ -15,9 +15,9 @@ import fidele.trame.DTReponseInfo;
 import fidele.trame.DTReponseInfoVoisin;
 import fidele.trame.DTThreadMigrant;
 
-import libWarThreads.InfoNoeud;
-import libWarThreads.InterfaceReseau;
-import libWarThreads.ParametresGeneraux;
+import libWarThreads.general.ParametresGeneraux;
+import libWarThreads.reseau.InfoNoeud;
+import libWarThreads.reseau.InterfaceReseau;
 import libWarThreads.trame.DTInfosNoeud;
 import libWarThreads.trame.DTPanneNoeud;
 import libWarThreads.trame.Trame;

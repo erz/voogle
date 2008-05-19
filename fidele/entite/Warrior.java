@@ -3,8 +3,8 @@ package fidele.entite;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import libWarThreads.InfoNoeud;
-import libWarThreads.Util;
+import libWarThreads.reseau.InfoNoeud;
+import libWarThreads.util.Util;
 
 import fidele.ia.*;
 

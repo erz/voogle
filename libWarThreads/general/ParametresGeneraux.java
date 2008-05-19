@@ -1,4 +1,4 @@
-package libWarThreads;
+package libWarThreads.general;
 
 /**
  * Contient tous les paramtres qui caractrisent un graphe

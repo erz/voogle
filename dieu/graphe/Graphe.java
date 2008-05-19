@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Vector;
 
-import libWarThreads.InfoModification;
-import libWarThreads.InfoNoeud;
-import libWarThreads.InfoThread;
-import libWarThreads.ParametresGeneraux;
+import libWarThreads.general.ParametresGeneraux;
+import libWarThreads.reseau.InfoModification;
+import libWarThreads.reseau.InfoNoeud;
+import libWarThreads.reseau.InfoThread;
 
 import fidele.entite.Noeud;
 

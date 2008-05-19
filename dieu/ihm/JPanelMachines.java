@@ -19,7 +19,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JToggleButton;
 
 
-import libWarThreads.InterfaceReseau;
+import libWarThreads.reseau.InterfaceReseau;
 
 @SuppressWarnings("serial")
 public class JPanelMachines extends JPanel implements Observer {
