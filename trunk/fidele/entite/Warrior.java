@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import libWarThreads.reseau.InfoNoeud;
+import libWarThreads.reseau.InfoThread;
 import libWarThreads.util.Util;
 
 import fidele.ia.*;
@@ -95,6 +96,18 @@ public class Warrior extends Thread implements Serializable
 		carte = new CarteWarrior(this.getProprietaire());
 		tactique = new TactiqueWarrior();
 		//verrou = new Object();
+	}
+	
+	public InfoThread creerInfoThread() {
+		return new InfoThread(
+				nom,
+				proprietaire,
+				etat,
+				idNoeudCourant,
+				idNoeudDestination,
+				distanceAParcourir,
+				nombreDeplacements
+				);
 	}
 	
 	public ArrayList<InfoNoeud> getInfoNoeudVoisins(){

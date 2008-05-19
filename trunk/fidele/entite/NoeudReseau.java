@@ -170,7 +170,7 @@ public class NoeudReseau {
 							case Trame.DEMANDE_INFO :
 								interfacesNoeudsReseau.get(i).envoyer(
 										new Trame(Trame.REPONSE_INFO, new DTReponseInfo(
-												((DTDemandeInfo)trameRecue.getDonnee()).getNomDemandeur(), new InfoNoeud(noeud))));
+												((DTDemandeInfo)trameRecue.getDonnee()).getNomDemandeur(), noeud.creerInfoNoeud())));
 								break;
 							case Trame.REPONSE_INFO :
 								DTReponseInfo trameReponse = (DTReponseInfo)trameRecue.getDonnee();

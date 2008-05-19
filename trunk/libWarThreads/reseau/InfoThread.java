@@ -1,7 +1,5 @@
 package libWarThreads.reseau;
 
-import fidele.entite.Warrior;
-
 @SuppressWarnings("serial")
 public class InfoThread extends InfoModification {
 	
@@ -13,14 +11,14 @@ public class InfoThread extends InfoModification {
 	private int distanceInterNoeuds;
 	private int nombreDeplacements;
 	
-	public InfoThread(Warrior w) {
-		nom = w.getNom();
-		etat = w.getEtat();
-		proprietaire = w.getProprietaire();
-		idNoeudDepart = w.getIdNoeudCourant();
-		idNoeudArrivee = w.getIdNoeudDestination();
-		distanceInterNoeuds = w.getDistanceAParcourir();
-		nombreDeplacements = w.getNombreDeplacements();
+	public InfoThread(String n, int e, int p, int idND, int idNA, int d, int nD) {
+		nom = n;
+		etat = e;
+		proprietaire = p;
+		idNoeudDepart = idND;
+		idNoeudArrivee = idNA;
+		distanceInterNoeuds = d;
+		nombreDeplacements = nD;
 	}
 	
 	public String getNom() {
