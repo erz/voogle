@@ -12,8 +12,8 @@ import libWarThreads.ParametresGeneraux;
 
 import fidele.entite.Noeud;
 
-import dieu.JFrameDieu;
-import dieu.JPanelVueJeu;
+import dieu.ihm.JFrameDieu;
+import dieu.ihm.JPanelVueJeu;
 
 public class Graphe extends Observable
 {

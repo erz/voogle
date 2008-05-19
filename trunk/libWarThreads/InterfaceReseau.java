@@ -10,6 +10,8 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 
+import libWarThreads.trame.Trame;
+
 
 /**
  * Interface de communication avec un point distant

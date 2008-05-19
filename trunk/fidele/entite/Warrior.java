@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import libWarThreads.InfoNoeud;
 import libWarThreads.Util;
 
-import fidele.CarteWarrior;
-import fidele.TactiqueWarrior;
 import fidele.ia.*;
 
 @SuppressWarnings("serial")

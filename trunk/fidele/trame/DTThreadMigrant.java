@@ -1,6 +1,6 @@
 package fidele.trame;
 
-import libWarThreads.DonneeTrame;
+import libWarThreads.trame.DonneeTrame;
 import fidele.entite.Warrior;
 
 @SuppressWarnings("serial")
