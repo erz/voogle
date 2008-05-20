@@ -95,7 +95,7 @@ public class Warrior extends Thread implements Serializable
 		nom = proprietaire + "." + idWarrior;
 		carte = new CarteWarrior(this.getProprietaire());
 		tactique = new TactiqueWarrior();
-		attendreRenfort= false;
+		
 		//verrou = new Object();
 	}
 	
