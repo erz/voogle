@@ -110,41 +110,55 @@ public class TactiqueWarrior implements Serializable
 		
 		if (risquesActuels.size() != 0)
 		{
-			if(cheminAParcourir.size() ==0 )
+			if(cheminAParcourir.size() ==0 && guerrier.getAttendreRenfort()==false)
 			{
-				int minRisque = CarteWarrior.MAX_INT ;
-				for (Iterator <Integer> i = risquesActuels.keySet().iterator() ; i.hasNext() ;)
-				{
-					Integer idNoeud = i.next();
-					
-					//on choisit un noeud dont le risque est minimal mais >0 ( on evite les threads trop facile)
-					if (Math.min(minRisque,risquesActuels.get(idNoeud)) != minRisque && risquesActuels.get(idNoeud)>=0)
+					int minRisque = CarteWarrior.MAX_INT ;
+					for (Iterator <Integer> i = risquesActuels.keySet().iterator() ; i.hasNext() ;)
 					{
-						minRisque = risquesActuels.get(idNoeud) ;
-						idtemp=idNoeud;
+						Integer idNoeud = i.next();
 						
+						//on choisit un noeud dont le risque est minimal mais >0 ( on evite les threads trop facile)
+						if (Math.min(minRisque,risquesActuels.get(idNoeud)) != minRisque && risquesActuels.get(idNoeud)>=0)
+						{
+							minRisque = risquesActuels.get(idNoeud) ;
+							idtemp=idNoeud;
+							
+						}
 					}
-				}
-				
-				//Trouve le chemin le plus court pour acceder au noeud cible! 
-				cheminAParcourir = new Dijkstra(guerrier.getCarte().getMatriceDistance(),guerrier.getIdNoeudCourant()).chemin(idtemp);
-				System.out.println("le chemin est :"+ cheminAParcourir);
-				//On recupere le premier id du noeud du chemin
-				for(int i=0;i<guerrier.getNoeud().getNombreVoisins();i++)
-				{
-					if(cheminAParcourir.get(0) == guerrier.getNoeud().getNoeudVoisinParIndice(i).getIdentifiantNoeud())
-						idCible = i; 
-				
-				}
-				actions[0]=1;
-				actions[1]=2;
-				//et on le supprime de la liste du chemin
-				cheminAParcourir.remove(0);
-				System.out.println("le nouveau chemin est :"+ cheminAParcourir);
-				
+					
+					//Trouve le chemin le plus court pour acceder au noeud cible! 
+					cheminAParcourir = new Dijkstra(guerrier.getCarte().getMatriceDistance(),guerrier.getIdNoeudCourant()).chemin(idtemp);
+					System.out.println("le chemin est :"+ cheminAParcourir);
+					//On recupere le premier id du noeud du chemin
+					for(int i=0;i<guerrier.getNoeud().getNombreVoisins();i++)
+					{
+						if(cheminAParcourir.get(0) == guerrier.getNoeud().getNoeudVoisinParIndice(i).getIdentifiantNoeud())
+							idCible = i; 
+					
+					}
+					
+					actions[0]=1;
+					actions[1]=2;
+					
+					if(cheminAParcourir.size() == 1)
+					{
+						actions[2]=3;
+					}
+					
+					//et on le supprime de la liste du chemin
+					cheminAParcourir.remove(0);
+					System.out.println("le nouveau chemin est :"+ cheminAParcourir);
 			}
 			else
 			{
+					actions[0]=1;
+					actions[1]=-1;
+					actions[2]=3;
+			}
+				
+		}
+		else
+			{
 				//On recupere le premier id du noeud du chemin
 				for(int i=0;i<guerrier.getNoeud().getNombreVoisins();i++)
 				{
@@ -155,11 +169,16 @@ public class TactiqueWarrior implements Serializable
 				
 				actions[0]=1;
 				actions[1]=2;
+				if(cheminAParcourir.size() == 1)
+				{
+					actions[2]=3;
+				}
+				
 				//et on le supprime de la liste du chemin
 				cheminAParcourir.remove(0);
 			}
 		}
-	}
+	
 	
 	public ArrayList <Integer> getCheminsAParcourir ()
 	{

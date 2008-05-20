@@ -68,7 +68,7 @@ public class Warrior extends Thread implements Serializable
 	 */
 	//private Object verrou;
 	
-	
+	private boolean attendreRenfort;
 	
 	public static final int ETAT_DEFAUT = 0;
 	public static final int ETAT_DEPLACEMENT = 1;
@@ -95,6 +95,7 @@ public class Warrior extends Thread implements Serializable
 		nom = proprietaire + "." + idWarrior;
 		carte = new CarteWarrior(this.getProprietaire());
 		tactique = new TactiqueWarrior();
+		attendreRenfort= false;
 		//verrou = new Object();
 	}
 	
@@ -289,5 +290,14 @@ public class Warrior extends Thread implements Serializable
 	
 	public String toString() {
 		return "(" + idWarrior + ", " + noeud.getId() + ")";
+	}
+
+	
+	public void setAttendreRenfort(boolean bool){
+		attendreRenfort = bool;
+	}
+	
+	public boolean getAttendreRenfort(){
+		return attendreRenfort;
 	}
 }
