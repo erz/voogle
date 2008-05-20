@@ -151,9 +151,8 @@ public class TactiqueWarrior implements Serializable
 			}
 			else
 			{
-					actions[0]=1;
 					actions[1]=-1;
-					actions[2]=3;
+					actions[2]=5;
 			}
 				
 		}

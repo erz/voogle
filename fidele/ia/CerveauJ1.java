@@ -111,6 +111,16 @@ public class CerveauJ1 extends Cerveau
 			{
 					guerrier.setAttendreRenfort(false);
 			}
+			if(guerrier.getTactique().getActions(i) == 4)
+			{
+					try {
+						guerrier.sleep(10000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+			}
+			
 		}
 		
 	}
