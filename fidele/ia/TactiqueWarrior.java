@@ -110,8 +110,9 @@ public class TactiqueWarrior implements Serializable
 		
 		if (risquesActuels.size() != 0)
 		{
-			if(cheminAParcourir.size() ==0 && guerrier.getAttendreRenfort()==false)
+			if(cheminAParcourir.size() ==0 && !guerrier.getAttendreRenfort())
 			{
+					System.out.println("LE BOOLEEN EST "+guerrier.getAttendreRenfort());
 					int minRisque = CarteWarrior.MAX_INT ;
 					for (Iterator <Integer> i = risquesActuels.keySet().iterator() ; i.hasNext() ;)
 					{
@@ -128,7 +129,9 @@ public class TactiqueWarrior implements Serializable
 					
 					//Trouve le chemin le plus court pour acceder au noeud cible! 
 					cheminAParcourir = new Dijkstra(guerrier.getCarte().getMatriceDistance(),guerrier.getIdNoeudCourant()).chemin(idtemp);
+					System.out.println("je suis sur le noeud:"+guerrier.getIdNoeudCourant());
 					System.out.println("le chemin est :"+ cheminAParcourir);
+					cheminAParcourir.remove(0);
 					//On recupere le premier id du noeud du chemin
 					for(int i=0;i<guerrier.getNoeud().getNombreVoisins();i++)
 					{

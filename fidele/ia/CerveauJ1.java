@@ -106,6 +106,7 @@ public class CerveauJ1 extends Cerveau
 			if(guerrier.getTactique().getActions(i) == 3)
 			{
 					guerrier.setAttendreRenfort(true);
+					System.out.println("Mode attente renfort!");
 			}
 			if(guerrier.getTactique().getActions(i) == 4)
 			{
@@ -114,7 +115,9 @@ public class CerveauJ1 extends Cerveau
 			if(guerrier.getTactique().getActions(i) == 4)
 			{
 					try {
+						System.out.println("J'attend des renforts");
 						guerrier.sleep(10000);
+						
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
