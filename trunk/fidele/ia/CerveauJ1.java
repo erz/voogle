@@ -97,15 +97,21 @@ public class CerveauJ1 extends Cerveau
 		{
 			if(guerrier.getTactique().getActions(i) == 1)
 			{
-					guerrier.combattre();
-					
+					guerrier.combattre();					
 			}
 			if(guerrier.getTactique().getActions(i) == 2)
 			{
 					guerrier.demanderAutorisationMigration(idNoeudCible);
 			}
+			if(guerrier.getTactique().getActions(i) == 3)
+			{
+					guerrier.setAttendreRenfort(true);
+			}
+			if(guerrier.getTactique().getActions(i) == 4)
+			{
+					guerrier.setAttendreRenfort(false);
+			}
 		}
-		//guerrier.attaquer();
-		//guerrier.demanderAutorisationMigration(idNoeudCible);
+		
 	}
 }
