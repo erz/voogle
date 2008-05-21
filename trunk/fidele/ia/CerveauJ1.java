@@ -106,7 +106,7 @@ public class CerveauJ1 extends Cerveau
 					guerrier.demanderAutorisationMigration(idNoeudCible);
 					break;
 				case 3:
-					guerrier.setAttendreRenfort(true);
+					//attendre();
 					System.out.println("Mode attente renfort!");
 					break;
 				case 4:
@@ -127,6 +127,8 @@ public class CerveauJ1 extends Cerveau
 			}
 			
 		}
+		if(guerrier.getTactique().getActions(2)==3)  guerrier.setAttendreRenfort(true);
 		
 	}
+	
 }
