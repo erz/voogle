@@ -69,6 +69,7 @@ public class Warrior extends Thread implements Serializable
 	//private Object verrou;
 	
 	private boolean attendreRenfort;
+	private CerveauJ1 cerveau;
 	
 	public static final int ETAT_DEFAUT = 0;
 	public static final int ETAT_DEPLACEMENT = 1;
@@ -95,7 +96,7 @@ public class Warrior extends Thread implements Serializable
 		nom = proprietaire + "." + idWarrior;
 		carte = new CarteWarrior(this.getProprietaire());
 		tactique = new TactiqueWarrior();
-		
+		cerveau = new CerveauJ1((float)0.5);
 		//verrou = new Object();
 	}
 	
@@ -230,20 +231,12 @@ public class Warrior extends Thread implements Serializable
 			 * Ces trois actions ci dessus dpendent de l'IA du warrior, et sont concentrs
 			 * dans les fonction "reflechir" et "agir" de son Cerveau.
 			 */
-			getCerveau().reflechir(this);
-			getCerveau().agir(this);
+			cerveau.reflechir(this);
+			cerveau.agir(this);
 		}
 	}
 	
-	/*
-	 * Renvoie le Cerveau que le thread doit utiliser.
-	 */
-	private Cerveau getCerveau ()
-	{
-		if (proprietaire >= 0)
-			return Cerveau.getCerveau(proprietaire);
-		return null;
-	}
+	
 	
 	public ArrayList <Warrior> reunirFamille () {
 		Noeud noeudCourant = this.getNoeud();
