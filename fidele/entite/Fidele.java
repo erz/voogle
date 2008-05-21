@@ -18,8 +18,6 @@ public class Fidele {
 		fideleReseau = new FideleReseau(this);
 		noeudsHebergs = new TreeMap<Integer, Noeud>();
 		
-		//Initialisation IA/Joueur
-		initIA();
 	}
 	
 	/**
@@ -82,15 +80,7 @@ public class Fidele {
 		for (int i=0; i<listeNoeuds.size(); i++)
 			listeNoeuds.get(i).stopperNoeud();
 	}
-	
-	/**
-	 * Initialise l'IA
-	 */
-	public void initIA () {
-		//Temporaire : pour chaque joueur on lui attribue une IA
-		Cerveau.setCerveau(0, new CerveauJ1((float) 0.25));
-		Cerveau.setCerveau(1, new CerveauJ1((float) 0.75));
-	}
+
 	
 	/**
 	 * @return la couche r�seau

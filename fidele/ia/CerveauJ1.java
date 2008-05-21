@@ -1,5 +1,6 @@
 package fidele.ia;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.TreeMap;
@@ -10,7 +11,7 @@ import libWarThreads.util.Util;
 
 import fidele.entite.Warrior;
 
-public class CerveauJ1 extends Cerveau
+public class CerveauJ1 implements Serializable
 {
 	int idNoeudCible;
 	
@@ -21,8 +22,6 @@ public class CerveauJ1 extends Cerveau
 	TreeMap <Integer,Integer> risquesActuels ;	
 	
 	ArrayList<Integer> chemin;
-	
-	TactiqueWarrior tactique;
 	
 	public CerveauJ1 (float aggressivite)
 	{
@@ -62,7 +61,7 @@ public class CerveauJ1 extends Cerveau
 			
 			if(chemin.size()== 0)
 			{
-				if(compteurExploration<5)
+				if(guerrier.getCarte().mapInfoCollectees.size()<5)
 				{
 					tactiqueid = TactiqueWarrior.TACTIQUE_EXPLORATION;
 					compteurExploration++;
@@ -106,8 +105,8 @@ public class CerveauJ1 extends Cerveau
 					guerrier.demanderAutorisationMigration(idNoeudCible);
 					break;
 				case 3:
-					//attendre();
-					System.out.println("Mode attente renfort!");
+					guerrier.setAttendreRenfort(true);
+					System.out.println("1/Le booleen est a "+guerrier.getAttendreRenfort());
 					break;
 				case 4:
 					guerrier.setAttendreRenfort(false);
@@ -127,7 +126,6 @@ public class CerveauJ1 extends Cerveau
 			}
 			
 		}
-		if(guerrier.getTactique().getActions(2)==3)  guerrier.setAttendreRenfort(true);
 		
 	}
 	
