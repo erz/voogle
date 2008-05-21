@@ -51,19 +51,19 @@ public class Noeud
 	private ArrayList<DemandeurDasile> demandeursDAsile;
 	
 	/**
-	 * Le nombre de threads crée par minute par ce noeud (cf NoeudBase)
+	 * Le nombre de threads crï¿½e par minute par ce noeud (cf NoeudBase)
 	 */
 	private int frequencePondaison;
 	
 	/**
-	 * Sous-couche réseau
+	 * Sous-couche rï¿½seau
 	 */
 	private NoeudReseau noeudReseau;
 	
 	boolean dejacapture;
 	
 	/**
-	 * La représentation d'un noeud voisin
+	 * La reprï¿½sentation d'un noeud voisin
 	 * @author Tony
 	 *
 	 */
@@ -74,7 +74,7 @@ public class Noeud
 		private int idNoeud;
 		
 		/**
-		 * L'éloignement du voisin
+		 * L'ï¿½loignement du voisin
 		 */
 		private int distance;
 		
@@ -97,8 +97,7 @@ public class Noeud
 	}
 	
 	/**
-	 * La représentation d'un thread souhaitant migrer sur ce noeud
-	 * @author Tony
+	 * La reprï¿½sentation d'un thread souhaitant migrer sur ce noeud
 	 *
 	 */
 	public class DemandeurDasile {
@@ -128,8 +127,8 @@ public class Noeud
 	
 	/**
 	 * Constructeur
-	 * @param info l'info servant à construire le noeud
-	 * @param f le fidele possédant ce noeud
+	 * @param info l'info servant ï¿½ construire le noeud
+	 * @param f le fidele possï¿½dant ce noeud
 	 */
 	public Noeud (InfoNoeud info, Fidele f) {
 		fidele = f;
@@ -169,7 +168,7 @@ public class Noeud
 	/**
 	 * Scrute en permanence la liste des threads souhaitant migrer sur ce noeud.
 	 * Si la liste n'est pas vide et qu'il reste de la place sur ce noeud,
-	 * alors une autorisation de migration est envoyée.
+	 * alors une autorisation de migration est envoyï¿½e.
 	 */
 	public void scruterDemandeursDasile() {
 		new Thread() {
@@ -189,9 +188,9 @@ public class Noeud
 	}
 	
 	/**
-	 * Demande à la couche réseau d'initier une connexion en tant que client vers le noeud voisin
+	 * Demande ï¿½ la couche rï¿½seau d'initier une connexion en tant que client vers le noeud voisin
 	 * @param infoVoisin les infos du futur voisin qui attent en tant que serveur
-	 * @param distance le noeud voisin doit la connaître également
+	 * @param distance le noeud voisin doit la connaï¿½tre ï¿½galement
 	 */
 	public void connecterAUnNoeud(InfoNoeud infoVoisin, int distance) {
 		noeudReseau.rejoindreNoeudReseau(infoVoisin.getIp(), infoVoisin.getPort());
@@ -199,14 +198,14 @@ public class Noeud
 	}
 	
 	/**
-	 * Transmet l'info de ce noeud au fidèle
+	 * Transmet l'info de ce noeud au fidï¿½le
 	 */
 	public void envoyerInfoNoeudAuFidele() {
 		fidele.envoyerInfoNoeudADieu(creerInfoNoeud());
 	}
 	
 	/**
-	 * Transmet l'info du thread au fidèle
+	 * Transmet l'info du thread au fidï¿½le
 	 * @param w
 	 */
 	public void envoyerInfoThreadAuFidele(Warrior w) {
@@ -214,7 +213,7 @@ public class Noeud
 	}
 	
 	/**
-	 * Effectue une demande de migration de la part d'un thread au noeud sur lequel il souhaite se déplacer
+	 * Effectue une demande de migration de la part d'un thread au noeud sur lequel il souhaite se dï¿½placer
 	 * @param numeroVoisin l'indice du noeud sur lequel souhaite migrer le thread
 	 * @param nomDemandeur le nom du thread souhaitant migrer
 	 */
@@ -223,7 +222,7 @@ public class Noeud
 	}
 	
 	/**
-	 * Envoie à un noeud une autorisation de migration pour un thread
+	 * Envoie ï¿½ un noeud une autorisation de migration pour un thread
 	 * @param nomThreadAutorise le nom du thread qui attend de migrer (ce thread est sur le noeud distant)
 	 * @param numeroNoeudProvenance l'indice du noeud sur lequel se trouve le thread en attente
 	 */
@@ -232,8 +231,8 @@ public class Noeud
 	}
 	
 	/**
-	 * Indique à un thread qu'il a le droit d'effectuer sa migration
-	 * @param nomMigreur le nom du thread autorisé à migrer
+	 * Indique ï¿½ un thread qu'il a le droit d'effectuer sa migration
+	 * @param nomMigreur le nom du thread autorisï¿½ ï¿½ migrer
 	 */
 	public void autoriserThreadAMigrer(String nomMigreur) {
 		// A VERIFIER
@@ -243,7 +242,7 @@ public class Noeud
 	
 	/**
 	 * Ajout d'un thread dans la liste.
-	 * Utilisée uniquement par NoeudBase !!
+	 * Utilisï¿½e uniquement par NoeudBase !!
 	 * @param w
 	 */
 	public void ajouterThread(Warrior w) {
@@ -251,9 +250,9 @@ public class Noeud
 	}
 	
 	/**
-	 * Effectue la migration d'un thread après que celui-ci ait recu l'autorisation.
-	 * Note : le thread dispose déjà des informations necessaires à sa migration,
-	 * qui ont été déterminée dans la fonction "demanderAutorisationMigration" de la classe Warrior
+	 * Effectue la migration d'un thread aprï¿½s que celui-ci ait recu l'autorisation.
+	 * Note : le thread dispose dï¿½jï¿½ des informations necessaires ï¿½ sa migration,
+	 * qui ont ï¿½tï¿½ dï¿½terminï¿½e dans la fonction "demanderAutorisationMigration" de la classe Warrior
 	 * @param thread
 	 */
 	public synchronized void migrerThread(Warrior thread) {
@@ -297,17 +296,17 @@ public class Noeud
 	}
 	
 	/**
-	 * Demande à chaque voisin les informations le concernant
-	 * @param nomDemandeur le nom du thread souhaitant récupérer les infos
+	 * Demande ï¿½ chaque voisin les informations le concernant
+	 * @param nomDemandeur le nom du thread souhaitant rï¿½cupï¿½rer les infos
 	 */
 	public void interrogerVoisins(String nomDemandeur) {
 		noeudReseau.envoyerDemandesInfos(nomDemandeur);
 	}
 	
 	/**
-	 * Recherche le thread ayant demandé les infos, et les lui donne.
-	 * Cette fonction est appelée autant de fois qu'il y'a de noeuds voisins
-	 * @param nomDemandeur le thread ayant demandé les infos des voisins
+	 * Recherche le thread ayant demandï¿½ les infos, et les lui donne.
+	 * Cette fonction est appelï¿½e autant de fois qu'il y'a de noeuds voisins
+	 * @param nomDemandeur le thread ayant demandï¿½ les infos des voisins
 	 * @param reponse l'information d'un noeud voisin
 	 */
 	public void donnerReponseInfo(String nomDemandeur, InfoNoeud reponse) {
@@ -329,17 +328,17 @@ public class Noeud
 	}
 	
 	/**
-	 * Ajoute un noeud voisin (pas un Noeud à proprement parler, seulement sa représentation :p)
+	 * Ajoute un noeud voisin (pas un Noeud ï¿½ proprement parler, seulement sa reprï¿½sentation :p)
 	 * @param idVoisin l'id de ce nouveau voisin
-	 * @param distanceVoisin la distance à ce voisin
+	 * @param distanceVoisin la distance ï¿½ ce voisin
 	 */
 	public void ajouterVoisin(int idVoisin, int distanceVoisin) {
 		noeudsVoisins.add(new NoeudVoisin(idVoisin, distanceVoisin));
 	}
 	
 	/**
-	 * Idem, mais ajoute le voisin à un endroit particulier dans le tableau des voisins.
-	 * Cela pour faire la correspondance entre les interfaces réseaux et les noeudsVoisins.
+	 * Idem, mais ajoute le voisin ï¿½ un endroit particulier dans le tableau des voisins.
+	 * Cela pour faire la correspondance entre les interfaces rï¿½seaux et les noeudsVoisins.
 	 * @param idVoisin
 	 * @param distanceVoisin
 	 * @param emplacement l'indice dans le tableau
@@ -531,7 +530,8 @@ public class Noeud
 			{
 				for(int j = 0; j < vectWarriors.size(); ++j)
 				{
-					if (vectWarriors.get(j).getProprietaire() == i /*&& vectWarriors.get(j).getEtat() == 2*/)
+					if (vectWarriors.get(j).getProprietaire() == i && vectWarriors.get(j).getEtat() == 2
+							)
 					{
 						//TUONS LE
 						
@@ -593,7 +593,7 @@ public class Noeud
 	}
 	
 	/**
-	 * Retourne la liste des propriétaires de chaque thread présents sur le noeud
+	 * Retourne la liste des propriï¿½taires de chaque thread prï¿½sents sur le noeud
 	 * @return
 	 */
 	public int[] getProprietairesThreads() {
@@ -605,7 +605,7 @@ public class Noeud
 	}
 	
 	/**
-	 * @return la couche réseau
+	 * @return la couche rï¿½seau
 	 */
 	public NoeudReseau getNoeudReseau() {
 		return noeudReseau;
@@ -624,7 +624,7 @@ public class Noeud
 	}
 	
 	/**
-	 * Retourne la distance du voisin situé à l'indice i
+	 * Retourne la distance du voisin situï¿½ ï¿½ l'indice i
 	 * @param i
 	 * @return
 	 */
@@ -642,7 +642,7 @@ public class Noeud
 	}
 	
 	/**
-	 * Retourne le noeud voisin situé à l'indice i
+	 * Retourne le noeud voisin situï¿½ ï¿½ l'indice i
 	 * @param i
 	 * @return
 	 */
@@ -677,7 +677,7 @@ public class Noeud
 	}
 	
 	/**
-	 * @return la list des threads présents sur le noeud
+	 * @return la list des threads prï¿½sents sur le noeud
 	 */
 	public Vector<Warrior> getListeWarrior() {
 		   return vectWarriors;

@@ -29,8 +29,8 @@ public class Graphe extends Observable
 	{
 		//A VERIFIER
 		//Nombre de lignes * Nombre de colonnes >= Nombre de noeuds
-		//Nombre d'arrètes par noeud >= 2
-		//Nombre d'arrètes par noeud < Nombre de noeuds -1
+		//Nombre d'arrï¿½tes par noeud >= 2
+		//Nombre d'arrï¿½tes par noeud < Nombre de noeuds -1
 	}
 	
 
@@ -83,12 +83,12 @@ public class Graphe extends Observable
 		return liens.size();
 	}
 	
-	public int getNbNoeudsConnectés() {
-		int nbNoeudsConnectés = 0;
+	public int getNbNoeudsConnectes() {
+		int nbNoeudsConnectes = 0;
 		for (int i=0; i<getTaille(); i++)
 			if (getNoeud(i).getInfo().isConnecte())
-				nbNoeudsConnectés ++;
-		return nbNoeudsConnectés;
+				nbNoeudsConnectes ++;
+		return nbNoeudsConnectes;
 	}
 	
 	

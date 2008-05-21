@@ -46,7 +46,9 @@ public class CerveauJ1 extends Cerveau
 	{
 		ArrayList <Warrior> familleThreads = guerrier.reunirFamille();
 		echangerCarte(familleThreads);
+		System.out.println("Noeud actuel = " + guerrier.getNoeud().getId());
 		risquesActuels = guerrier.getCarte().getRisques(guerrier.getNoeud().getId());
+		
 		deciderTactique(guerrier);
 	}
 

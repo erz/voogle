@@ -145,9 +145,12 @@ public class CarteWarrior implements Serializable
 				nbrThreadsEnnemis = mapInfoCollectees.get(idNoeud).getNbrThreadsJ1() - 
 									mapInfoCollectees.get(idNoeud).getNbrThreadsJ2() ;
 			
+			if ( idNoeud != noeudCourant)
 			tabRisque.put(idNoeud,new Integer(matriceDistances[noeudCourant][idNoeud] + 100 * nbrThreadsEnnemis)) ;
+
 		}
 		
+		System.out.println("Tableau = " + tabRisque);
 		return tabRisque ;
 	}
 	

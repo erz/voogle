@@ -11,19 +11,19 @@ import libWarThreads.reseau.InfoNoeud;
 
 
 /**
- * Classe représentant Dieu
+ * Classe reprï¿½sentant Dieu
  * @author Tony
  *
  */
 public class Dieu extends Observable {
 	
 	/**
-	 * La liste des informations des noeuds non encore actualisés
+	 * La liste des informations des noeuds non encore actualisï¿½s
 	 */
 	private ArrayList<InfoModification> infosModifications;
 	
 	/**
-	 * Sous-couche réseau
+	 * Sous-couche rï¿½seau
 	 */
 	private DieuReseau dieuReseau;
 	
@@ -53,11 +53,11 @@ public class Dieu extends Observable {
 					getNumeroFideleAleatoire()
 					);
 		
-		while (graphe.getNbNoeudsConnectés() < graphe.getTaille());
+		while (graphe.getNbNoeudsConnectes() < graphe.getTaille());
 		for (int i=0; i<graphe.getNbLiens(); i++)
 			implanterUnLien(graphe.getLien(i).getNoeud1().getInfo(),
 					graphe.getLien(i).getNoeud2().getInfo(), graphe.getLien(i).getDistance());
-		System.out.println("Graphe implanté");
+		System.out.println("Graphe implantï¿½");
 	}
 	
 	public void signalerDebutJeu() {
@@ -69,9 +69,9 @@ public class Dieu extends Observable {
 	}
 	
 	/**
-	 * Demande à une machine connectée d'instancier un noeud
+	 * Demande ï¿½ une machine connectï¿½e d'instancier un noeud
 	 * @param numeroMachine l'id de la machine
-	 * @param idNoeud l'id du noeud à implanter
+	 * @param idNoeud l'id du noeud ï¿½ implanter
 	 */
 	public void implanterUnNoeud(InfoNoeud infoNoeud, int numFidele) {
 		noeudsSurFideles.put(infoNoeud.getIdentifiantNoeud(), numFidele);
@@ -79,7 +79,7 @@ public class Dieu extends Observable {
 	}
 	
 	/**
-	 * Demande à deux noeuds implantés sur des machines de créer un lien entre eux
+	 * Demande ï¿½ deux noeuds implantï¿½s sur des machines de crï¿½er un lien entre eux
 	 *
 	 */
 	public void implanterUnLien(InfoNoeud infoNoeud1, InfoNoeud infoNoeud2, int distance) {
