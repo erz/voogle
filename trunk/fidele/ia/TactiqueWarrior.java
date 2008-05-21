@@ -57,13 +57,13 @@ public class TactiqueWarrior implements Serializable
 		this.tactique = -1 ;
 		this.cheminAParcourir = null;
 		actions = new int[3];
-		actions[0]=1;
-		actions[1]=2;
+		actions[1]=1;
+		actions[2]=2;
 	}
 	
 	private void TactiqueIndeterminee(){
-		actions[0]=1;
-		actions[1]=2;
+		actions[1]=1;
+		actions[2]=2;
 	}
 	
 	private void TactiqueExploration()
@@ -102,8 +102,8 @@ public class TactiqueWarrior implements Serializable
 			idCible = (int) (Math.random()*guerrier.getNoeud().getNombreVoisins());
 		}
 		
-		actions[0]=1;
-		actions[1]=2;
+		actions[1]=1;
+		actions[2]=2;
 	}
 	
 	private void TactiqueDefensive(){
@@ -120,7 +120,7 @@ public class TactiqueWarrior implements Serializable
 			if(cheminAParcourir.size() ==0)
 			{
 				
-				if(guerrier.getCarte().mapInfoCollectees.size()>5)
+				if(guerrier.getCarte().mapInfoCollectees.size()>2)
 				{
 					actions[0]=3;
 				}

@@ -80,9 +80,9 @@ public class CerveauJ1 implements Serializable
 		}
 		else
 		{
-			System.out.println("Je n'ai aucune information sur ma carte");
+			//System.out.println("Je n'ai aucune information sur ma carte");
 			idNoeudCible = guerrier.getNoeud().getNumeroVoisinAleatoire();
-			System.out.println("J'entreprend d'explorer un de mes voisins");
+			//System.out.println("J'entreprend d'explorer un de mes voisins");
 			
 		}
 		
@@ -96,7 +96,7 @@ public class CerveauJ1 implements Serializable
 		
 		for(int i=0;i<3;i++)
 		{
-			
+			System.out.println("////////////////ACTIONS("+i+") :"+guerrier.getTactique().getActions(i));
 			switch(guerrier.getTactique().getActions(i))
 			{
 				case 1:
@@ -106,6 +106,7 @@ public class CerveauJ1 implements Serializable
 					guerrier.demanderAutorisationMigration(idNoeudCible);
 					break;
 				case 3:
+					System.out.println("J'attend des renforts");
 					try 
 					{
 						System.out.println("J'attend des renforts");
