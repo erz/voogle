@@ -117,9 +117,14 @@ public class TactiqueWarrior implements Serializable
 		
 		if (risquesActuels.size() != 0)
 		{
-			if(cheminAParcourir.size() ==0 && !guerrier.getAttendreRenfort())
+			if(cheminAParcourir.size() ==0)
 			{
-					System.out.println("LE BOOLEEN EST "+guerrier.getAttendreRenfort());
+				
+				if(guerrier.getCarte().mapInfoCollectees.size()>5)
+				{
+					actions[0]=3;
+				}
+				
 					int minRisque = CarteWarrior.MAX_INT ;
 					for (Iterator <Integer> i = risquesActuels.keySet().iterator() ; i.hasNext() ;)
 					{
@@ -149,25 +154,16 @@ public class TactiqueWarrior implements Serializable
 					
 					}
 					
-					actions[0]=1;
-					actions[1]=2;
+					actions[1]=1;
+					actions[2]=2;
 					
-					if(cheminAParcourir.size() == 1)
-					{
-						actions[2]=3;
-					}
 					
 					//et on le supprime de la liste du chemin
 					if (cheminAParcourir.size() > 0)
 						cheminAParcourir.remove(0);
 					System.out.println("le nouveau chemin est :"+ cheminAParcourir);
 			}
-			else
-			{
-					actions[1]=-1;
-					actions[2]=5;
-					System.out.println("???????????????");
-			}
+			
 				
 		}
 		else
@@ -180,11 +176,11 @@ public class TactiqueWarrior implements Serializable
 				
 				}
 				
-				actions[0]=1;
-				actions[1]=2;
+				actions[1]=1;
+				actions[2]=2;
 				if(cheminAParcourir.size() == 1)
 				{
-					actions[2]=3;
+					actions[0]=3;
 				}
 				
 				//et on le supprime de la liste du chemin
