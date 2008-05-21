@@ -298,13 +298,8 @@ public class Warrior extends Thread implements Serializable
 		return attendreRenfort;
 	}
 	
-	public ArrayList<Integer> getChemin(){
-		return chemin;
-	}
 	
-	public void setChemin(ArrayList<Integer> nouveauchemin){
-		chemin = nouveauchemin;
-	}
+	
 }
 	
 	

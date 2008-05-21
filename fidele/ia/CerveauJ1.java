@@ -15,6 +15,7 @@ public class CerveauJ1 implements Serializable
 {
 	int idNoeudCible;
 	
+	
 	float aggressivite = (float)0.51;
 
 	TreeMap <Integer,Integer> risquesActuels ;	
@@ -41,7 +42,6 @@ public class CerveauJ1 implements Serializable
 	
 	public void reflechir(Warrior guerrier) 
 	{
-		chemin=guerrier.getChemin();
 		ArrayList <Warrior> familleThreads = guerrier.reunirFamille();
 		echangerCarte(familleThreads);
 		System.out.println("Noeud actuel = " + guerrier.getNoeud().getId());
@@ -63,7 +63,6 @@ public class CerveauJ1 implements Serializable
 				if(guerrier.getCarte().mapInfoCollectees.size()<5)
 				{
 					tactiqueid = TactiqueWarrior.TACTIQUE_EXPLORATION;
-					
 				}
 				else
 					tactiqueid = TactiqueWarrior.TACTIQUE_OFFENSIVE;
@@ -73,7 +72,7 @@ public class CerveauJ1 implements Serializable
 			//recuperation de l'id noeud sur lequel le warrior va migrer
 			idNoeudCible=guerrier.getTactique().getIdCible();
 			//recuperation de la suite du chemin
-			guerrier.setChemin(guerrier.getTactique().getCheminsAParcourir());
+			chemin = guerrier.getTactique().getCheminsAParcourir();
 			
 		}
 		else
