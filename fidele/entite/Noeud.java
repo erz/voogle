@@ -328,6 +328,17 @@ public class Noeud
 	}
 	
 	/**
+	 * Stopper les activités de ce noeud
+	 */
+	public void stopperNoeud() 
+	{
+		for(int i = 0; i < vectWarriors.size(); ++i)
+		{
+			vectWarriors.get(i).stopper();
+		}
+	}
+	
+	/**
 	 * Ajoute un noeud voisin (pas un Noeud ï¿½ proprement parler, seulement sa reprï¿½sentation :p)
 	 * @param idVoisin l'id de ce nouveau voisin
 	 * @param distanceVoisin la distance ï¿½ ce voisin

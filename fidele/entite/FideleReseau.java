@@ -137,6 +137,9 @@ public class FideleReseau {
 							DTDebut debutJeu = (DTDebut)trameRecue.getDonnee();
 							fidele.mettreLesNoeudsEnAction();
 							break;
+						case Trame.FIN :
+							fidele.stopperTout();
+							break;
 						case Trame.PANNE_FIDELE :
 							DTPanneFidele panneSurFidele = (DTPanneFidele)trameRecue.getDonnee();
 							break;
