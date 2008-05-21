@@ -10,8 +10,9 @@ public class InfoThread extends InfoModification {
 	private int idNoeudArrivee;
 	private int distanceInterNoeuds;
 	private int nombreDeplacements;
+	private boolean attendreRenfort;
 	
-	public InfoThread(String n, int e, int p, int idND, int idNA, int d, int nD) {
+	public InfoThread(String n, int e, int p, int idND, int idNA, int d, int nD,boolean ar) {
 		nom = n;
 		etat = e;
 		proprietaire = p;
@@ -19,6 +20,7 @@ public class InfoThread extends InfoModification {
 		idNoeudArrivee = idNA;
 		distanceInterNoeuds = d;
 		nombreDeplacements = nD;
+		attendreRenfort = ar;
 	}
 	
 	public String getNom() {
