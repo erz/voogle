@@ -159,6 +159,7 @@ public class TactiqueWarrior implements Serializable
 			{
 					actions[1]=-1;
 					actions[2]=5;
+					System.out.println("???????????????");
 			}
 				
 		}

@@ -63,7 +63,7 @@ public class CerveauJ1 extends Cerveau
 			
 			if(chemin.size()== 0)
 			{
-				if(compteurExploration<15)
+				if(compteurExploration<5)
 				{
 					tactiqueid = TactiqueWarrior.TACTIQUE_EXPLORATION;
 					compteurExploration++;
@@ -113,8 +113,9 @@ public class CerveauJ1 extends Cerveau
 			if(guerrier.getTactique().getActions(i) == 4)
 			{
 					guerrier.setAttendreRenfort(false);
+					System.out.println("Mode attente fini!");
 			}
-			if(guerrier.getTactique().getActions(i) == 4)
+			if(guerrier.getTactique().getActions(i) == 5)
 			{
 					try {
 						System.out.println("J'attend des renforts");
