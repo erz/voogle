@@ -10,6 +10,7 @@ import dieu.graphe.NoeudGraphe;
 
 import libWarThreads.reseau.InfoModification;
 import libWarThreads.reseau.InfoNoeud;
+import libWarThreads.util.Console;
 
 
 /**
@@ -66,7 +67,7 @@ public class Dieu extends Observable
 					if (NbPtsParCamp.get(i) == vect.size())
 					{
 						//Ce camp est gagnant, on s'arrete
-						System.out.println("Le Camp " + i + " est le Gagnant !");
+						Console.ecrire("Le Camp " + i + " est le Gagnant !");
 						etatJeu = 2;
 					}
 				}
@@ -74,7 +75,7 @@ public class Dieu extends Observable
 				if (etatJeu == 0 && (depart+dureeJeu) <= System.currentTimeMillis())
 				{
 					//Le temps est écoulé, on arrete la partie
-					System.out.println("Le temps est écoulé !");
+					Console.ecrire("Le temps est écoulé !");
 					etatJeu = 1;
 				}
 				
@@ -85,12 +86,12 @@ public class Dieu extends Observable
 					{
 						System.out.println("Au bout du temps réglementaire, les résultats sont :");
 						for(int i = 0; i < NbPtsParCamp.size(); ++i)
-							System.out.println("Le camp " + i + " contrôle " + NbPtsParCamp.get(i) + " noeud ! Félicitations !");
+							Console.ecrire("Le camp " + i + " contrôle " + NbPtsParCamp.get(i) + " noeud ! Félicitations !");
 					}
 					
 					if (etatJeu == 2)
 					{
-						System.out.println("La carte a été entièrement conquise !");
+						Console.ecrire("La carte a été entièrement conquise !");
 					}
 					
 					//On arrete tous les fideles
