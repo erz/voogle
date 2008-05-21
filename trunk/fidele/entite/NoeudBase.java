@@ -2,10 +2,13 @@ package fidele.entite;
 
 import libWarThreads.reseau.InfoNoeud;
 
-public class NoeudBase extends Noeud {
+public class NoeudBase extends Noeud 
+{
+	boolean pondre;
 
 	public NoeudBase(InfoNoeud info, Fidele fidele) {
 		super(info, fidele);
+		pondre = true;
 	}
 	
 	public void pondreUnThread() {
@@ -18,7 +21,7 @@ public class NoeudBase extends Noeud {
 		new Thread() {
 			@Override
 			public void run() {
-				while (true) {
+				while (pondre) {
 					pondreUnThread();
 					try {
 						sleep(60000 / getFrequencePondaison());
@@ -38,9 +41,10 @@ public class NoeudBase extends Noeud {
 	}
 	
 	@Override
-	public void stopperNoeud() {
+	public void stopperNoeud() 
+	{
 		super.stopperNoeud();
-		
+		pondre = false;
 	}
 	
 	@Override
