@@ -10,7 +10,7 @@ public class ParametresGeneraux
 	/**
 	 * Le nombre de joeurs contrlant les threads
 	 */
-	public static int nombreJoueurs = 1;
+	public static int nombreJoueurs = 2;
 	
 	/**
 	 * Nombre de noeuds du graphes
