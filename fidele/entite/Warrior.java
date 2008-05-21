@@ -107,7 +107,8 @@ public class Warrior extends Thread implements Serializable
 				idNoeudCourant,
 				idNoeudDestination,
 				distanceAParcourir,
-				nombreDeplacements
+				nombreDeplacements,
+				attendreRenfort
 				);
 	}
 	
