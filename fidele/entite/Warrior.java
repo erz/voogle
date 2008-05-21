@@ -57,6 +57,8 @@ public class Warrior extends Thread implements Serializable
 	 */
 	private TactiqueWarrior tactique ;
 	
+	ArrayList<Integer> chemin;
+	
 	/**
 	 * La liste des informations des noeuds voisins du noeud
 	 * sur lequel se trouve le thread
@@ -94,6 +96,7 @@ public class Warrior extends Thread implements Serializable
 		proprietaire = noeud.getProprietaire();
 		infosNoeudsVoisins = new ArrayList<InfoNoeud>();
 		nom = proprietaire + "." + idWarrior;
+		chemin = new ArrayList<Integer>();
 		carte = new CarteWarrior(this.getProprietaire());
 		tactique = new TactiqueWarrior();
 		cerveau = new CerveauJ1((float)0.5);
@@ -294,4 +297,14 @@ public class Warrior extends Thread implements Serializable
 	public boolean getAttendreRenfort(){
 		return attendreRenfort;
 	}
+	
+	public ArrayList<Integer> getChemin(){
+		return chemin;
+	}
+	
+	public void setChemin(ArrayList<Integer> nouveauchemin){
+		chemin = nouveauchemin;
+	}
 }
+	
+	

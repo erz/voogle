@@ -41,6 +41,7 @@ public class CerveauJ1 implements Serializable
 	
 	public void reflechir(Warrior guerrier) 
 	{
+		chemin=guerrier.getChemin();
 		ArrayList <Warrior> familleThreads = guerrier.reunirFamille();
 		echangerCarte(familleThreads);
 		System.out.println("Noeud actuel = " + guerrier.getNoeud().getId());
@@ -72,7 +73,7 @@ public class CerveauJ1 implements Serializable
 			//recuperation de l'id noeud sur lequel le warrior va migrer
 			idNoeudCible=guerrier.getTactique().getIdCible();
 			//recuperation de la suite du chemin
-			chemin = guerrier.getTactique().getCheminsAParcourir();
+			guerrier.setChemin(guerrier.getTactique().getCheminsAParcourir());
 			
 		}
 		else
