@@ -74,6 +74,16 @@ public class Fidele {
 	}
 	
 	/**
+	 * Arrete tous les threads afin de terminer le jeu.
+	 */
+	public void stopperTout()  
+	{
+		ArrayList<Noeud> listeNoeuds = new ArrayList<Noeud>(noeudsHebergs.values());
+		for (int i=0; i<listeNoeuds.size(); i++)
+			listeNoeuds.get(i).stopperNoeud();
+	}
+	
+	/**
 	 * Initialise l'IA
 	 */
 	public void initIA () {

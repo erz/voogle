@@ -36,6 +36,13 @@ public class NoeudBase extends Noeud {
 		super.mettreEnAction();
 		pondreUnThread();
 	}
+	
+	@Override
+	public void stopperNoeud() {
+		super.stopperNoeud();
+		
+	}
+	
 	@Override
 	public boolean isBase(){
 		return true;
