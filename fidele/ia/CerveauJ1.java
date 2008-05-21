@@ -48,7 +48,6 @@ public class CerveauJ1 extends Cerveau
 		echangerCarte(familleThreads);
 		System.out.println("Noeud actuel = " + guerrier.getNoeud().getId());
 		risquesActuels = guerrier.getCarte().getRisques(guerrier.getNoeud().getId());
-		
 		deciderTactique(guerrier);
 	}
 
@@ -97,27 +96,26 @@ public class CerveauJ1 extends Cerveau
 		
 		for(int i=0;i<3;i++)
 		{
-			if(guerrier.getTactique().getActions(i) == 1)
+			
+			switch(guerrier.getTactique().getActions(i))
 			{
-					guerrier.combattre();					
-			}
-			if(guerrier.getTactique().getActions(i) == 2)
-			{
+				case 1:
+					guerrier.combattre();
+					break;
+				case 2:
 					guerrier.demanderAutorisationMigration(idNoeudCible);
-			}
-			if(guerrier.getTactique().getActions(i) == 3)
-			{
+					break;
+				case 3:
 					guerrier.setAttendreRenfort(true);
 					System.out.println("Mode attente renfort!");
-			}
-			if(guerrier.getTactique().getActions(i) == 4)
-			{
+					break;
+				case 4:
 					guerrier.setAttendreRenfort(false);
 					System.out.println("Mode attente fini!");
-			}
-			if(guerrier.getTactique().getActions(i) == 5)
-			{
-					try {
+					break;
+				case 5:
+					try 
+					{
 						System.out.println("J'attend des renforts");
 						guerrier.sleep(10000);
 						
@@ -125,6 +123,7 @@ public class CerveauJ1 extends Cerveau
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
+					break;
 			}
 			
 		}
