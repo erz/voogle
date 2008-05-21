@@ -108,6 +108,12 @@ public class TactiqueWarrior implements Serializable
 	
 	private void TactiqueDefensive(){
 		
+		/*for(int i=0;i<guerrier.getCarte().getMatriceDistance().length;i++)
+		{
+		  guerrier.getCarte().mapInfoCollectees.
+		}
+		cheminAParcourir = new Dijkstra(guerrier.getCarte().getMatriceDistance(),guerrier.getIdNoeudCourant()).chemin(guerrier.);
+		*/
 	}
 	
 	private void TactiqueOffensive(){
