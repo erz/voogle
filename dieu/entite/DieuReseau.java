@@ -96,8 +96,17 @@ public class DieuReseau {
 			envoyerSignalDebut(i);
 	}
 	
+	public void envoyerSignalFinATous() {
+		for (int i=0; i<interfacesMachines.size(); i++)
+			envoyerSignalFin(i);
+	}
+	
 	private void envoyerSignalDebut(int numeroFidele) {
 		interfacesMachines.get(numeroFidele).envoyer(new Trame(Trame.DEBUT, new DTDebut()));
+	}
+	
+	private void envoyerSignalFin(int numeroFidele) {
+		interfacesMachines.get(numeroFidele).envoyer(new Trame(Trame.FIN, null));
 	}
 	
 	public void envoyerSignalPanne(int numeroFidele) {

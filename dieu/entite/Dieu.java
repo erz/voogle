@@ -3,8 +3,10 @@ package dieu.entite;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.TreeMap;
+import java.util.Vector;
 
 import dieu.graphe.Graphe;
+import dieu.graphe.NoeudGraphe;
 
 import libWarThreads.reseau.InfoModification;
 import libWarThreads.reseau.InfoNoeud;
@@ -12,10 +14,84 @@ import libWarThreads.reseau.InfoNoeud;
 
 /**
  * Classe reprï¿½sentant Dieu
- * @author Tony
  *
  */
-public class Dieu extends Observable {
+public class Dieu extends Observable 
+{
+	private class ControleFin extends Thread
+	{
+		long depart;
+		long dureeJeu;
+		boolean controle;
+		// 0 = en cours, 1 = arreter a cause du temps, 2 = arreter par domination totale
+		int etatJeu;
+		
+		ControleFin (long timeDep, long duree)
+		{
+			depart = timeDep;
+			dureeJeu = duree;
+			controle = true;
+		}
+		
+		@Override
+		public void run()
+		{
+			while (controle)
+			{
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				//Recuperer les informations de tous les noeuds
+				Vector <NoeudGraphe> vect = graphe.getVectNoeuds();
+				Vector<Integer> NbPtsParCamp = new Vector<Integer> ();
+				NbPtsParCamp.setSize(libWarThreads.general.ParametresGeneraux.nombreJoueurs);
+				for (int i = 0; i < vect.size(); ++i)
+				{
+					NbPtsParCamp.set(vect.get(i).getInfo().getProprietaire(), NbPtsParCamp.get(vect.get(i).getInfo().getProprietaire()) + 1);
+				}
+				
+				for(int i = 0; i < NbPtsParCamp.size(); ++i)
+				{
+					if (NbPtsParCamp.get(i) == vect.size())
+					{
+						//Ce camp est gagnant, on s'arrete
+						System.out.println("Le Camp " + i + " est le Gagnant !");
+						etatJeu = 2;
+					}
+				}
+				
+				if (etatJeu == 0 && (depart+dureeJeu) <= System.currentTimeMillis())
+				{
+					//Le temps est écoulé, on arrete la partie
+					System.out.println("Le temps est écoulé !");
+					etatJeu = 1;
+				}
+				
+				//Arret du jeu
+				if (etatJeu != 0)
+				{
+					if (etatJeu == 1)
+					{
+						System.out.println("Au bout du temps réglementaire, les résultats sont :");
+						for(int i = 0; i < NbPtsParCamp.size(); ++i)
+							System.out.println("Le camp " + i + " contrôle " + NbPtsParCamp.get(i) + " noeud ! Félicitations !");
+					}
+					
+					if (etatJeu == 2)
+					{
+						System.out.println("La carte a été entièrement conquise !");
+					}
+					
+					//On arrete tous les fideles
+					signalerFinJeu();
+				}
+			}
+		}
+	}
 	
 	/**
 	 * La liste des informations des noeuds non encore actualisï¿½s
@@ -57,11 +133,15 @@ public class Dieu extends Observable {
 		for (int i=0; i<graphe.getNbLiens(); i++)
 			implanterUnLien(graphe.getLien(i).getNoeud1().getInfo(),
 					graphe.getLien(i).getNoeud2().getInfo(), graphe.getLien(i).getDistance());
-		System.out.println("Graphe implantï¿½");
+		System.out.println("Graphe implante");
 	}
 	
 	public void signalerDebutJeu() {
 		dieuReseau.envoyerSignalDebutATous();
+	}
+	
+	public void signalerFinJeu() {
+		dieuReseau.envoyerSignalFinATous();
 	}
 	
 	public void simulerPanneSurFidele(int numeroFidele) {
