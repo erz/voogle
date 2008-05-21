@@ -91,5 +91,9 @@ public class Graphe extends Observable
 		return nbNoeudsConnectes;
 	}
 	
+	public Vector <NoeudGraphe> getVectNoeuds()
+	{
+		return vectNoeuds;
+	}
 	
 }
