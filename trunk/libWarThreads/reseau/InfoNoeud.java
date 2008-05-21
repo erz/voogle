@@ -8,7 +8,7 @@ public class InfoNoeud extends InfoModification {
 	private int identifiantFidele;
 	private int identifiantNoeud;
 	
-	private boolean connecté;
+	private boolean connecte;
 	
 	/**
 	 *  A qui appartient le noeud ? 0 = neutre, 1..n = joueur i
@@ -23,7 +23,7 @@ public class InfoNoeud extends InfoModification {
 	
 	public InfoNoeud(int id, boolean connect, int proprio, int nbThreads, int[] propriosThreads, String IP, int por) {
 		identifiantNoeud = id;
-		connecté = connect;
+		connecte = connect;
 		proprietaire = proprio;
 		proprietairesThreads = new int[nbThreads];
 		System.arraycopy(propriosThreads, 0, proprietairesThreads, 0, nbThreads);
@@ -33,7 +33,7 @@ public class InfoNoeud extends InfoModification {
 	
 	public InfoNoeud(int identifiant) {
 		this.identifiantNoeud = identifiant;
-		connecté = false;
+		connecte = false;
 		proprietaire = -1;
 	}
 	
@@ -72,7 +72,7 @@ public class InfoNoeud extends InfoModification {
 	
 	
 	public boolean isConnecte() {
-		return connecté;
+		return connecte;
 	}
 	
 	public void setIp(String ip) {
@@ -91,8 +91,8 @@ public class InfoNoeud extends InfoModification {
 		this.proprietaire = appartenance;
 	}
 	
-	public void setConnecté(boolean c) {
-		connecté = c;
+	public void setConnecte(boolean c) {
+		connecte = c;
 	}
 	
 	public void setBase(boolean b) {

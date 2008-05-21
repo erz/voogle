@@ -87,7 +87,7 @@ public class TactiqueWarrior implements Serializable
 			
 			}
 			//System.out.println("idcible ="+temp);
-			//System.out.println("N° voisin ="+idCible);
+			//System.out.println("Nï¿½ voisin ="+idCible);
 		}
 		//Sinon on choisit un thread au hasard
 		else
@@ -126,6 +126,8 @@ public class TactiqueWarrior implements Serializable
 							
 						}
 					}
+					System.out.println("Id risque minimum = " + idtemp);
+					//System.out.println("Risques :"+ new ArrayList<Integer>(risquesActuels));
 					
 					//Trouve le chemin le plus court pour acceder au noeud cible! 
 					cheminAParcourir = new Dijkstra(guerrier.getCarte().getMatriceDistance(),guerrier.getIdNoeudCourant()).chemin(idtemp);
@@ -135,7 +137,7 @@ public class TactiqueWarrior implements Serializable
 					//On recupere le premier id du noeud du chemin
 					for(int i=0;i<guerrier.getNoeud().getNombreVoisins();i++)
 					{
-						if(cheminAParcourir.get(0) == guerrier.getNoeud().getNoeudVoisinParIndice(i).getIdentifiantNoeud())
+						if(cheminAParcourir.size() > 0 && cheminAParcourir.get(0) == guerrier.getNoeud().getNoeudVoisinParIndice(i).getIdentifiantNoeud())
 							idCible = i; 
 					
 					}
@@ -149,7 +151,8 @@ public class TactiqueWarrior implements Serializable
 					}
 					
 					//et on le supprime de la liste du chemin
-					cheminAParcourir.remove(0);
+					if (cheminAParcourir.size() > 0)
+						cheminAParcourir.remove(0);
 					System.out.println("le nouveau chemin est :"+ cheminAParcourir);
 			}
 			else

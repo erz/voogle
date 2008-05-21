@@ -58,7 +58,7 @@ public class NoeudReseau {
 	private TreeMap<Integer, CompteurACK> compteursACK;
 	
 	/**
-	 * Compteur pour les accusés de reception 
+	 * Compteur pour les accusï¿½s de reception 
 	 */
 	private class CompteurACK extends Thread
 	{
@@ -249,7 +249,7 @@ public class NoeudReseau {
 	}
 
 	/*
-	 * Fonction de résolution de panne
+	 * Fonction de rï¿½solution de panne
 	 * 	@param destinataire
 	 * 		Noeud en panne
 	 */
@@ -260,7 +260,7 @@ public class NoeudReseau {
 			InterfaceReseau ir = i.next();
 			ir.envoyer(new Trame(Trame.PANNE_NOEUD, new DTPanneNoeud(this,destinataire)));
 		}
-		//on prend les identifiants de tous les noeuds voisins ayant détecté la panne
+		//on prend les identifiants de tous les noeuds voisins ayant dï¿½tectï¿½ la panne
 		ArrayList<Integer> idsNoeudsVoisins = new ArrayList<Integer>();
 		for(int j=0; j<noeud.getNombreVoisins();j++)
 			idsNoeudsVoisins.add(new Integer(noeud.getNoeudVoisin(j).getIdentifiantNoeud()));
@@ -273,32 +273,32 @@ public class NoeudReseau {
 				idMax = cm;
 		}*/
 		//il devient initiateur(i)
-		//envoyer à Dieu
+		//envoyer ï¿½ Dieu
 		//envoyer une trame initiateur
 		//il envoie une trame au identifiant de plus grand d'identifiant plus grand que celui de i
 		
 		//et celui qui a le plus grand id devient createur
-		//ce créateur demande a dieu les données du noeud en panne
+		//ce crï¿½ateur demande a dieu les donnï¿½es du noeud en panne
 	
 	
-		//Envoyer rapport de panne à Dieu
+		//Envoyer rapport de panne ï¿½ Dieu
 		
 		
 		/////////////////
 		///
-		/// Un Noeud n'est pas envoyable sur le réseau !!! ( = java.io.NotSerializableException )
+		/// Un Noeud n'est pas envoyable sur le rï¿½seau !!! ( = java.io.NotSerializableException )
 		/// Donc pas de "this" dans FideleReseau.getInterfaceDieu().envoyer(new Trame(Trame.PANNE_NOEUD,new DTPanneNoeud(this,1)));
-		/// A la place, créez vous une classe qui implémente Serializable et qui contient les infos
+		/// A la place, crï¿½ez vous une classe qui implï¿½mente Serializable et qui contient les infos
 		/// que vous souhaitez envoyer si besoin.
 		///
 		/////////////////
 		
 		
 		//FideleReseau.getInterfaceDieu().envoyer(new Trame(Trame.PANNE_NOEUD,new DTPanneNoeud(noeud.getId(),destinataire)));
-		//Dieu prévient tous les noeuds voisins du noeud en panne
-		//Dieu leur dit qui va recréer
+		//Dieu prï¿½vient tous les noeuds voisins du noeud en panne
+		//Dieu leur dit qui va recrï¿½er
 		//Dieu envoie au noeud voisin ayant le plus grand id une trame avec toutes les infos
-		//nécessaires à la recréation(infoNoeudenPanne, liste voisins)
+		//nï¿½cessaires ï¿½ la recrï¿½ation(infoNoeudenPanne, liste voisins)
 	
 	}
 	public void initiateur(){

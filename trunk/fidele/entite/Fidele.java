@@ -1,5 +1,6 @@
 package fidele.entite;
 
+import java.util.ArrayList;
 import java.util.TreeMap;
 
 import libWarThreads.reseau.InfoNoeud;
@@ -22,8 +23,8 @@ public class Fidele {
 	}
 	
 	/**
-	 * Construit un nouveau noeud sur ce fidèle
-	 * @param info les infos servant à construire le noeud
+	 * Construit un nouveau noeud sur ce fidï¿½le
+	 * @param info les infos servant ï¿½ construire le noeud
 	 */
 	public void instancierNoeud(InfoNoeud info) {
 		if (info.isBase())
@@ -33,7 +34,7 @@ public class Fidele {
 	}
 	
 	/**
-	 * Crée un lien entre deux noeuds
+	 * Crï¿½e un lien entre deux noeuds
 	 * @param infoNoeud1 le noeud qui va se connecter en tant que client
 	 * @param infoNoeud2 le noeud qui va recevoir une demande de connexion du noeud 1
 	 * @param distance la distance entre les deux noeuds
@@ -43,7 +44,7 @@ public class Fidele {
 	}
 	
 	/**
-	 * Envoie à Dieu les infos passées en paramètres
+	 * Envoie ï¿½ Dieu les infos passï¿½es en paramï¿½tres
 	 * @param info l'info du noeud
 	 */
 	public void envoyerInfoNoeudADieu(InfoNoeud info) {
@@ -51,7 +52,7 @@ public class Fidele {
 	}
 	
 	/**
-	 * Envoie à Dieu les infos concernant un Thread (et non le thread lui même !)
+	 * Envoie ï¿½ Dieu les infos concernant un Thread (et non le thread lui mï¿½me !)
 	 * @param info l'info du thread
 	 */
 	public void envoyerInfoThreadADieu(InfoThread info) {
@@ -63,12 +64,13 @@ public class Fidele {
 	}
 	
 	/**
-	 * Mets tous les noeuds du fidèle en action (pondaison pour les bases)
-	 * Fonction appelée une fois que le graphe a été implanté
+	 * Mets tous les noeuds du fidï¿½le en action (pondaison pour les bases)
+	 * Fonction appelï¿½e une fois que le graphe a ï¿½tï¿½ implantï¿½
 	 */
 	public void mettreLesNoeudsEnAction() {
-		for (int i=0; i<noeudsHebergs.size(); i++)
-			noeudsHebergs.get(i).mettreEnAction();
+		ArrayList<Noeud> listeNoeuds = new ArrayList<Noeud>(noeudsHebergs.values());
+		for (int i=0; i<listeNoeuds.size(); i++)
+			listeNoeuds.get(i).mettreEnAction();
 	}
 	
 	/**
@@ -81,14 +83,14 @@ public class Fidele {
 	}
 	
 	/**
-	 * @return la couche réseau
+	 * @return la couche rï¿½seau
 	 */
 	public FideleReseau getFideleReseau() {
 		return fideleReseau;
 	}	
 
 	/**
-	 * @return la liste des noeuds instanciés sur ce fidèle sous la forme (idNoeud, Noeud)
+	 * @return la liste des noeuds instanciï¿½s sur ce fidï¿½le sous la forme (idNoeud, Noeud)
 	 */
 	public TreeMap<Integer, Noeud> getNoeudsHebergs() {
 		return noeudsHebergs;
