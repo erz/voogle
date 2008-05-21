@@ -135,7 +135,7 @@ public class Noeud
 		dejacapture = false;
 		idNoeud = info.getIdentifiantNoeud();
 		proprietaire = info.getProprietaire();
-		coefficient = (int)(5*(Math.random())+1);
+		coefficient = (int)(4*(Math.random())+1);
 		frequencePondaison = info.getFrequencePondaison();
 		noeudsVoisins = new ArrayList <NoeudVoisin> (ParametresGeneraux.nbrArretesMax);
 		vectWarriors = new Vector<Warrior>();

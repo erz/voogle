@@ -21,10 +21,13 @@ public class CerveauJ1 implements Serializable
 	
 	ArrayList<Integer> chemin;
 	
+	
+	
 	public CerveauJ1 (float aggressivite)
 	{
 		this.aggressivite = aggressivite ;
 		chemin = new ArrayList<Integer>();
+		
 	}
 	
 	public void echangerCarte (ArrayList <Warrior> familleThreads)
@@ -59,12 +62,13 @@ public class CerveauJ1 implements Serializable
 			
 			if(chemin.size()== 0)
 			{
-				if(guerrier.getCarte().mapInfoCollectees.size()<15)
+				if(guerrier.getCarte().mapInfoCollectees.size()<3)
 				{
 					tactiqueid = TactiqueWarrior.TACTIQUE_EXPLORATION;
 				}
 				else
-					tactiqueid = TactiqueWarrior.TACTIQUE_OFFENSIVE;
+					 tactiqueid = TactiqueWarrior.TACTIQUE_OFFENSIVE;
+				
 			}
 			
 			guerrier.setTactique(new TactiqueWarrior(guerrier,tactiqueid,chemin));
@@ -102,18 +106,10 @@ public class CerveauJ1 implements Serializable
 					guerrier.demanderAutorisationMigration(idNoeudCible);
 					break;
 				case 3:
-					guerrier.setAttendreRenfort(true);
-					System.out.println("1/Le booleen est a "+guerrier.getAttendreRenfort());
-					break;
-				case 4:
-					guerrier.setAttendreRenfort(false);
-					System.out.println("Mode attente fini!");
-					break;
-				case 5:
 					try 
 					{
 						System.out.println("J'attend des renforts");
-						guerrier.sleep(10000);
+						guerrier.sleep(4000);
 						
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
