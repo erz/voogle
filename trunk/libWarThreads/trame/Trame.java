@@ -21,6 +21,8 @@ public class Trame implements Serializable {
 	public static final int DEMANDE_MIGRATION = 14;
 	public static final int AUTORISATION_MIGRATION = 15;
 	public static final int SIGNAL_VIE = 16;
+	public static final int FIN = 17;
+	
 	
 	private int code;
 	private DonneeTrame donnee;
