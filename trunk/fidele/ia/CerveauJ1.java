@@ -62,7 +62,7 @@ public class CerveauJ1 implements Serializable
 			
 			if(chemin.size()== 0)
 			{
-				if(guerrier.getCarte().mapInfoCollectees.size()<5)
+				if(guerrier.getCarte().mapInfoCollectees.size()<3)
 				{
 					tactiqueid = TactiqueWarrior.TACTIQUE_EXPLORATION;
 				}
@@ -82,7 +82,7 @@ public class CerveauJ1 implements Serializable
 		{
 			//System.out.println("Je n'ai aucune information sur ma carte");
 			idNoeudCible = guerrier.getNoeud().getNumeroVoisinAleatoire();
-			//System.out.println("J'entreprend d'explorer un de mes voisins");
+			System.out.println("J'entreprend d'explorer un de mes voisins");
 			
 		}
 		
