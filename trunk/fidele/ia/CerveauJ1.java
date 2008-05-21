@@ -62,7 +62,7 @@ public class CerveauJ1 implements Serializable
 			
 			if(chemin.size()== 0)
 			{
-				if(guerrier.getCarte().mapInfoCollectees.size()<3)
+				if(guerrier.getCarte().mapInfoCollectees.size()<5)
 				{
 					tactiqueid = TactiqueWarrior.TACTIQUE_EXPLORATION;
 				}
