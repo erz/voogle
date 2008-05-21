@@ -49,9 +49,16 @@ public class Dieu extends Observable
 				Vector <NoeudGraphe> vect = graphe.getVectNoeuds();
 				Vector<Integer> NbPtsParCamp = new Vector<Integer> ();
 				NbPtsParCamp.setSize(libWarThreads.general.ParametresGeneraux.nombreJoueurs);
+				
+				for(int i = 0; i < NbPtsParCamp.size(); ++i)
+					NbPtsParCamp.set(i, 0);
+				
 				for (int i = 0; i < vect.size(); ++i)
 				{
-					NbPtsParCamp.set(vect.get(i).getInfo().getProprietaire(), NbPtsParCamp.get(vect.get(i).getInfo().getProprietaire()) + 1);
+					if (vect.get(i).getInfo().getProprietaire() >= 0)
+					{
+						NbPtsParCamp.set(vect.get(i).getInfo().getProprietaire(), NbPtsParCamp.get(vect.get(i).getInfo().getProprietaire()) + 1);	
+					}
 				}
 				
 				for(int i = 0; i < NbPtsParCamp.size(); ++i)
@@ -88,6 +95,7 @@ public class Dieu extends Observable
 					
 					//On arrete tous les fideles
 					signalerFinJeu();
+					controle = false;
 				}
 			}
 		}
@@ -136,7 +144,9 @@ public class Dieu extends Observable
 		System.out.println("Graphe implante");
 	}
 	
-	public void signalerDebutJeu() {
+	public void signalerDebutJeu() 
+	{
+		new ControleFin(System.currentTimeMillis(), 15000).start();
 		dieuReseau.envoyerSignalDebutATous();
 	}
 	
