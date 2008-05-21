@@ -12,7 +12,7 @@ public class InfoThread extends InfoModification {
 	private int nombreDeplacements;
 	private boolean attendreRenfort;
 	
-	public InfoThread(String n, int e, int p, int idND, int idNA, int d, int nD,boolean ar) {
+	public InfoThread(String n, int p, int e, int idND, int idNA, int d, int nD,boolean ar) {
 		nom = n;
 		etat = e;
 		proprietaire = p;
