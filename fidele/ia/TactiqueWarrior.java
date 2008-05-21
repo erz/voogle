@@ -35,14 +35,21 @@ public class TactiqueWarrior implements Serializable
 		this.cheminAParcourir = cheminAParcourir;
 		this.guerrier = warrior;
 		actions = new int[3];
-		if(tactique == TACTIQUE_EXPLORATION)
+		
+		switch(tactique){
+		case TACTIQUE_EXPLORATION:
 			TactiqueExploration();
-		if(tactique == TACTIQUE_OFFENSIVE)
+			break;
+		case TACTIQUE_OFFENSIVE:
 			TactiqueOffensive();
-		if(tactique == TACTIQUE_DEFENSIVE)
+			break;
+		case TACTIQUE_DEFENSIVE:
 			TactiqueDefensive();
-		if(tactique == TACTIQUE_INDETERMINEE );
+			break;
+		case TACTIQUE_INDETERMINEE:
 			TactiqueIndeterminee();
+			break;
+		}
 	}
 	
 	public TactiqueWarrior ()

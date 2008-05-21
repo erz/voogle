@@ -15,7 +15,6 @@ public class CerveauJ1 implements Serializable
 {
 	int idNoeudCible;
 	
-	
 	float aggressivite = (float)0.51;
 
 	TreeMap <Integer,Integer> risquesActuels ;	
@@ -60,7 +59,7 @@ public class CerveauJ1 implements Serializable
 			
 			if(chemin.size()== 0)
 			{
-				if(guerrier.getCarte().mapInfoCollectees.size()<5)
+				if(guerrier.getCarte().mapInfoCollectees.size()<15)
 				{
 					tactiqueid = TactiqueWarrior.TACTIQUE_EXPLORATION;
 				}
