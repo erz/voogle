@@ -37,7 +37,7 @@ public class NoeudBase extends Noeud
 	@Override
 	public void mettreEnAction() {
 		super.mettreEnAction();
-		pondreUnThread();
+		pondreEnContinu();
 	}
 	
 	@Override
