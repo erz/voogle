@@ -135,7 +135,7 @@ public class Dieu extends Observable
 		for (int i=0; i<graphe.getTaille(); i++)
 			implanterUnNoeud(
 					graphe.getNoeud(i).getInfo(),
-					getNumeroFideleAleatoire()
+					0
 					);
 		
 		while (graphe.getNbNoeudsConnectes() < graphe.getTaille());
