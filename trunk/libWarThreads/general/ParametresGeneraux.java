@@ -50,7 +50,7 @@ public class ParametresGeneraux
 	
 	public static int nbrMaxThreadsParNoeud = 5;
 	
-	public static long tempsExpiration = 10000000;
+	public static long tempsExpiration = 5000;
 	
 	public static void setParam (int nombreNoeuds,
 						int nombreColonnes,
