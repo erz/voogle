@@ -62,6 +62,8 @@ public class Noeud
 	
 	boolean dejacapture;
 	
+	boolean surveillance;
+	
 	/**
 	 * La repr�sentation d'un noeud voisin
 	 * @author Tony
@@ -145,7 +147,7 @@ public class Noeud
 		
 		envoyerInfoNoeudAuFidele();
 		noeudReseau.attendreConnexionsVoisins();
-		
+		surveillance = true;
 		//On lance la surveillance en arrire-plan des batailles du noeud
 		initSurveillance(this);
 		
@@ -336,6 +338,7 @@ public class Noeud
 		{
 			vectWarriors.get(i).stopper();
 		}
+		surveillance = false;
 	}
 	
 	/**
@@ -376,7 +379,7 @@ public class Noeud
         new Thread() {
             public void run() {
                 //Bouclage infini
-            	while (true)
+            	while (surveillance)
             	{
             		
             		//On parcourt les threads qui se balade sur le noeud, des qu'il s'agit de threads

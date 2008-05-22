@@ -147,7 +147,7 @@ public class Dieu extends Observable
 	
 	public void signalerDebutJeu() 
 	{
-		new ControleFin(System.currentTimeMillis(), 30000).start();
+		new ControleFin(System.currentTimeMillis(), 60000).start();
 		dieuReseau.envoyerSignalDebutATous();
 	}
 	
