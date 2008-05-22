@@ -43,6 +43,7 @@ public class JFrameFidele extends JFrame {
 		centre.add(attendreDieu = new JButton("Attendre dieu"));
 		contenu.add(BorderLayout.CENTER, centre);
 		contenu.add(BorderLayout.SOUTH, new Console());
+		super.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setTitle("Fidele");
 		setSize(300, 200);
 		setVisible(true);
