@@ -1,0 +1,1 @@
+Ce projet est réalisé sous la forme d’un jeu de stratégie mettant en rôle 2 à n joueurs. Le but est la conquête du territoire (tous les nœuds de la carte) ou le cumul du plus grand nombre de points gagnés suite à des captures de nœuds.
